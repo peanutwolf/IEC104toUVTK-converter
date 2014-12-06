@@ -1,0 +1,223 @@
+ /* if we receive an empty tcp frame from client => close connection */
+  if (p == NULL)
+  {
+    /* remote host closed connection */
+    iec_struct->state = IEC_CLOSING;
+    if(iec_struct->p == NULL)
+    {
+       /* we're done sending, close connection */
+       iecsock_server_connection_close(tpcb, iec_struct);
+    }
+    else
+    {
+      /* we're not done yet */
+      /* acknowledge received packet */
+      tcp_sent(tpcb,  iecsock_server_sent);
+      
+      /* send remaining data*/
+      iecsock_server_send(tpcb, iec_struct);
+    }
+    ret_err = ERR_OK;
+  }   
+  /* else : a non empty frame was received from client but for some reason err != ERR_OK */
+  else if(err != ERR_OK)
+  {
+    /* free received pbuf*/
+    iec_struct->p = NULL;
+    pbuf_free(p);
+    ret_err = err;
+  }
+  else 
+  
+  
+  
+  
+  
+  
+  
+  
+  static struct pbuf * low_level_input(struct netif *netif)
+{
+  struct pbuf *p= NULL, *q;
+  u32_t len;
+  FrameTypeDef frame;
+  u8 *buffer;
+  __IO ETH_DMADESCTypeDef *DMARxDesc;
+  uint32_t bufferoffset = 0;
+  uint32_t payloadoffset = 0;
+  uint32_t byteslefttocopy = 0;
+  uint32_t i=0;  
+
+  /* get received frame */
+  frame = ETH_Get_Received_Frame_interrupt();
+
+  /* Obtain the size of the packet and put it into the "len" variable. */
+  len = frame.length;
+  buffer = (u8 *)frame.buffer;
+  
+  if (len > 0)
+  {
+    /* We allocate a pbuf chain of pbufs from the Lwip buffer pool */
+    p = pbuf_alloc(PBUF_RAW, len, PBUF_POOL);
+  }
+  
+  if (p != NULL)
+  {
+    DMARxDesc = frame.descriptor;
+    bufferoffset = 0;
+    for(q = p; q != NULL; q = q->next)
+    {
+      byteslefttocopy = q->len;
+      payloadoffset = 0;
+
+      /* Check if the length of bytes to copy in current pbuf is bigger than Rx buffer size*/
+      while( (byteslefttocopy + bufferoffset) > ETH_RX_BUF_SIZE )
+      {
+        /* Copy data to pbuf*/
+        memcpy( (u8_t*)((u8_t*)q->payload + payloadoffset), (u8_t*)((u8_t*)buffer + bufferoffset), (ETH_RX_BUF_SIZE - bufferoffset));
+
+        /* Point to next descriptor */
+        DMARxDesc = (ETH_DMADESCTypeDef *)(DMARxDesc->Buffer2NextDescAddr);
+        buffer = (unsigned char *)(DMARxDesc->Buffer1Addr);
+
+        byteslefttocopy = byteslefttocopy - (ETH_RX_BUF_SIZE - bufferoffset);
+        payloadoffset = payloadoffset + (ETH_RX_BUF_SIZE - bufferoffset);
+        bufferoffset = 0;
+      }
+
+      /* Copy remaining data in pbuf */
+      memcpy( (u8_t*)((u8_t*)q->payload + payloadoffset), (u8_t*)((u8_t*)buffer + bufferoffset), byteslefttocopy);
+      bufferoffset = bufferoffset + byteslefttocopy;
+    }
+  
+  /* Release descriptors to DMA */
+  DMARxDesc =frame.descriptor;
+
+  /* Set Own bit in Rx descriptors: gives the buffers back to DMA */
+  for (i=0; i<DMA_RX_FRAME_infos->Seg_Count; i++)
+  {  
+    DMARxDesc->Status = ETH_DMARxDesc_OWN;
+    DMARxDesc = (ETH_DMADESCTypeDef *)(DMARxDesc->Buffer2NextDescAddr);
+  }
+  
+  /* Clear Segment_Count */
+  DMA_RX_FRAME_infos->Seg_Count =0;
+  /* added for test*/
+  }
+  
+  /* When Rx Buffer unavailable flag is set: clear it and resume reception */
+  if ((ETH->DMASR & ETH_DMASR_RBUS) != (u32)RESET)  
+  {
+    /* Clear RBUS ETHERNET DMA flag */
+    ETH->DMASR = ETH_DMASR_RBUS;
+    /* Resume DMA reception */
+    ETH->DMARPDR = 0;
+  }
+  return p;
+}
+
+
+struct pbuf* generatIECansw(struct pbuf* p){
+	
+  //err_t	err;
+	struct pbuf* ptr;
+	
+	/* Check IEC header size*/
+	if(p -> len < IEC104_HEADER_SIZE){
+			return p;
+	}
+	/*Allocate memory for iec104 telegramm frame*/
+	struct iec_buf* buf = (struct iec_buf*)malloc(p -> len);
+	g_buf = buf;
+	buf -> data_len = p -> len;
+	memcpy(&buf->h, p -> payload, p -> len);
+	
+	if(buf -> h.start == 0x68){	
+		if(frame_type(&buf->h) == FRAME_TYPE_U){
+			 //IEC104_tcp_buf_alloc(sizeof(IEC104_data));
+			 buf = prepare_uframe_answ(buf, IEC_SLAVE, 0);
+			 fifoPushElem(iec_fifo_buf, buf);
+			 /*
+	     //err = pbuf_take(IEC104_send_buf, &buf->h, sizeof(IEC104_data));
+			 //IEC104_send_buf->len = sizeof(IEC104_data);
+			 free(buf);
+			  	if(err != ERR_OK){
+						  while(IEC104_send_buf != NULL){
+						    ptr = IEC104_send_buf;
+						    IEC104_send_buf = ptr->next;
+						    pbuf_free(ptr);	
+						  }		 
+		        IEC104_send_buf = NULL;
+		      }
+					else{	
+						while(p != NULL){
+						 ptr = p;
+						 p = ptr->next;
+						 pbuf_free(ptr);	
+						}		     
+			     p = IEC104_send_buf;
+					}  
+					*/
+		}
+		
+		else if(frame_type(&buf->h) == FRAME_TYPE_I){
+			NR++;			
+		  parse_iframe(iec_fifo_buf, buf);
+			/*
+			buf = fifoPopElem(iec_fifo_buf);
+			IEC104_tcp_buf_alloc(buf->data_len);
+			NS++;
+			buf->h.ic.ns = NS;
+			buf->h.ic.nr = NR;
+			err = pbuf_take(IEC104_send_buf, &buf->h, buf->data_len);
+			free(buf);
+			buf = NULL;
+			NS++;
+			buf->h.ic.ns = NS;
+			buf->h.ic.nr = NR;
+      buf = fifoPopElem(iec_fifo_buf);
+			//IEC104_tcp_buf_alloc(buf->data_len);
+			err = pbuf_take(p, &buf->h, buf->data_len);
+			free(buf);	
+      buf = NULL;			
+			pbuf_chain(IEC104_send_buf, p);
+			  	if(err != ERR_OK){
+						  while(IEC104_send_buf != NULL){
+						    ptr = IEC104_send_buf;
+						    IEC104_send_buf = ptr->next;
+						    pbuf_free(ptr);	
+						  }		 
+		        IEC104_send_buf = NULL;
+		      }
+					else{	
+						while(p != NULL){
+						 ptr = p;
+						 p = ptr->next;
+						 pbuf_free(ptr);	
+						}		     
+			     p = IEC104_send_buf;
+					} 
+					*/				
+		} 
+		else if(frame_type(&buf->h) == FRAME_TYPE_S){
+			NR++;
+			free(buf);
+			buf = NULL;
+			return p;
+		}
+		else{
+			free(buf);
+			buf = NULL;
+		}
+		IEC104_send_buf = prepare_tcp_iec_buf(iec_fifo_buf);
+		  if(IEC104_send_buf != NULL){
+				 while(p != NULL){
+				   ptr = p;
+				   p = ptr->next;
+				   pbuf_free(ptr);	
+			   }		     
+		    p = IEC104_send_buf;
+			}
+	}
+ return p;
+}

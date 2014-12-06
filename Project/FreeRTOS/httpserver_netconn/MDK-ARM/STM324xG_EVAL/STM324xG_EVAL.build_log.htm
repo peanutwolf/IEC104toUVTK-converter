@@ -1,0 +1,177 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Keil_v5\ARM\MyPrj\STM32F4x7_ETH_LwIP_V1.1.0\Project\FreeRTOS\httpserver_netconn\MDK-ARM\Project.uvproj
+Project File Date:  11/21/2014
+
+<h2>Output:</h2>
+Build target 'STM324xG_EVAL'
+compiling UVTKdrv.c...
+linking...
+Program Size: Code=34612 RO-data=5332 RW-data=468 ZI-data=51692  
+".\STM324xG_EVAL\STM324xG_EVAL.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Keil_v5\\ARM\\MyPrj\\STM32F4x7_ETH_LwIP_V1.1.0\\Project\\FreeRTOS\\httpserver_netconn\\MDK-ARM\\STM324xG_EVAL\\STM324xG_EVAL.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+.
+erenced
+        uint8_t data;
+..\src\main.c: 3 warnings, 0 errors
+compiling IEC104_server.c...
+..\inc\libiecasdu.h(16): warning:  #231-D: declaration is not visible outside of function
+  void parse_iframe(fifo_t* fifo_buf, struct iec_buf *buf);
+..\src\IEC104_server.c(138): warning:  #188-D: enumerated type mixed with another type
+                         buf = prepare_uframe_answ(buf, IEC_SLAVE, 0);
+..\src\IEC104_server.c(143): warning:  #167-D: argument of type "struct iec_buf *" is incompatible with parameter of type "struct iec_buf *"
+                  parse_iframe(iec_fifo_buf, buf);              
+..\src\IEC104_server.c: 3 warnings, 0 errors
+compiling iecsock_server.c...
+..\inc\libiecasdu.h(16): warning:  #231-D: declaration is not visible outside of function
+  void parse_iframe(fifo_t* fifo_buf, struct iec_buf *buf);
+..\src\iecsock_server.c: 1 warning, 0 errors
+compiling libiecasdu.c...
+compiling IEC104_drv.c...
+..\src\IEC104_drv.c(22): warning:  #177-D: variable "UVTK_1ts_grp_data_tmp" was declared but never referenced
+        uint8_t UVTK_1ts_grp_data_tmp = 0;
+..\src\IEC104_drv.c(23): warning:  #177-D: variable "UVTK_2ts_grp_data_tmp" was declared but never referenced
+        uint8_t UVTK_2ts_grp_data_tmp = 0;
+..\src\IEC104_drv.c(67): warning:  #177-D: variable "UVTK_1ti_grp_data_tmp" was declared but never referenced
+        uint8_t UVTK_1ti_grp_data_tmp = 0;
+..\src\IEC104_drv.c(68): warning:  #177-D: variable "UVTK_2ti_grp_data_tmp" was declared but never referenced
+        uint8_t UVTK_2ti_grp_data_tmp = 0;
+..\src\IEC104_drv.c(107): warning:  #1-D: last line of file ends without a newline
+  }
+..\src\IEC104_drv.c: 5 warnings, 0 errors
+linking...
+Program Size: Code=35092 RO-data=5368 RW-data=468 ZI-data=51724  
+".\STM324xG_EVAL\STM324xG_EVAL.axf" - 0 Error(s), 12 Warning(s).
+f *" is incompatible with parameter of type "struct iec_buf *"
+                  parse_iframe(iec_fifo_buf, buf);              
+..\src\IEC104_server.c: 3 warnings, 0 errors
+compiling iecsock_server.c...
+..\inc\libiecasdu.h(15): warning:  #231-D: declaration is not visible outside of function
+  void parse_iframe(fifo_t* fifo_buf, struct iec_buf *buf);
+..\src\iecsock_server.c: 1 warning, 0 errors
+compiling libiecasdu.c...
+compiling FIFO_buffer.c...
+compiling UVTKdrv.c...
+compiling IEC104_drv.c...
+compiling api_lib.c...
+compiling api_msg.c...
+compiling tcpip.c...
+compiling init.c...
+compiling mem.c...
+compiling memp.c...
+compiling pbuf.c...
+compiling sys.c...
+compiling ethernetif.c...
+compiling sys_arch.c...
+compiling timers.c...
+compiling stm32f4x7_eth.c...
+compiling stm324x7i_eval.c...
+compiling stm324x7i_eval_lcd.c...
+compiling port.c...
+compiling heap_4.c...
+compiling tasks.c...
+compiling croutine.c...
+compiling list.c...
+compiling queue.c...
+linking...
+Program Size: Code=34196 RO-data=5332 RW-data=476 ZI-data=51372  
+".\STM324xG_EVAL\STM324xG_EVAL.axf" - 0 Error(s), 14 Warning(s).
+Load "C:\\Keil_v5\\ARM\\MyPrj\\STM32F4x7_ETH_LwIP_V1.1.0\\Project\\FreeRTOS\\httpserver_netconn\\MDK-ARM\\STM324xG_EVAL\\STM324xG_EVAL.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+(170): error:  #132: expression must have pointer-to-struct-or-union type
+        TM_cp56_time->year = RTC_DateStruct.RTC_Year;
+..\src\libiecasdu.c: 0 warnings, 16 errors
+compiling IEC104_drv.c...
+..\inc\libiecasdu.h(15): warning:  #231-D: declaration is not visible outside of function
+  void parse_iframe(fifo_t* fifo_buf, struct iec_buf *buf);
+..\inc\libiecasdu.h(18): error:  #20: identifier "cp56time2a" is undefined
+  void set_iec_time(cp56time2a* TM_cp56_time);
+..\inc\libiecasdu.h(19): error:  #20: identifier "cp56time2a" is undefined
+  void get_iec_time(cp56time2a* TM_cp56_time);
+..\src\IEC104_drv.c: 1 warning, 2 errors
+".\STM324xG_EVAL\STM324xG_EVAL.axf" - 18 Error(s), 8 Warning(s).
+Target not created
+ error:  #393: pointer to incomplete class type is not allowed
+        RTC_DateStruct.RTC_Month = TM_cp56_time->month;
+..\src\libiecasdu.c(151): error:  #393: pointer to incomplete class type is not allowed
+        RTC_DateStruct.RTC_WeekDay = TM_cp56_time->wday;
+..\src\libiecasdu.c(152): error:  #393: pointer to incomplete class type is not allowed
+        RTC_DateStruct.RTC_Year = TM_cp56_time->year;
+..\src\libiecasdu.c(163): error:  #393: pointer to incomplete class type is not allowed
+        TM_cp56_time->hour = RTC_TimeStruct.RTC_Hours;
+..\src\libiecasdu.c(164): error:  #393: pointer to incomplete class type is not allowed
+        TM_cp56_time->min = RTC_TimeStruct.RTC_Minutes;
+..\src\libiecasdu.c(165): error:  #393: pointer to incomplete class type is not allowed
+        TM_cp56_time->msec = RTC_TimeStruct.RTC_Seconds*0x03E8 + RTC_GetSubSecond()/8;
+..\src\libiecasdu.c(167): error:  #393: pointer to incomplete class type is not allowed
+        TM_cp56_time->mday = RTC_DateStruct.RTC_Date;
+..\src\libiecasdu.c(168): error:  #393: pointer to incomplete class type is not allowed
+        TM_cp56_time->month = RTC_DateStruct.RTC_Month;
+..\src\libiecasdu.c(169): error:  #393: pointer to incomplete class type is not allowed
+        TM_cp56_time->wday = RTC_DateStruct.RTC_WeekDay;
+..\src\libiecasdu.c(170): error:  #393: pointer to incomplete class type is not allowed
+        TM_cp56_time->year = RTC_DateStruct.RTC_Year;
+..\src\libiecasdu.c(7): error:  #235: variable "TM_cp56_time" was declared with a never-completed type
+  cp56time2a TM_cp56_time;
+..\src\libiecasdu.c: 0 warnings, 22 errors
+compiling IEC104_drv.c...
+..\inc\libiecasdu.h(15): warning:  #231-D: declaration is not visible outside of function
+  void parse_iframe(fifo_t* fifo_buf, struct iec_buf *buf);
+..\inc\libiecasdu.h(18): error:  #20: identifier "cp56time2a" is undefined
+  void set_iec_time(cp56time2a* TM_cp56_time);
+..\inc\libiecasdu.h(19): error:  #20: identifier "cp56time2a" is undefined
+  void get_iec_time(cp56time2a* TM_cp56_time);
+..\inc\iec104_types.h(167): error:  #70: incomplete type is not allowed
+        cp56time2a      time;
+..\inc\iec104_types.h(179): error:  #70: incomplete type is not allowed
+        cp56time2a      time;
+..\inc\iec104_types.h(191): error:  #70: incomplete type is not allowed
+        cp56time2a      time;
+..\inc\iec104_types.h(203): error:  #70: incomplete type is not allowed
+        cp56time2a      time;
+..\inc\iec104_types.h(215): error:  #70: incomplete type is not allowed
+        cp56time2a      time;
+..\src\IEC104_drv.c: 1 warning, 7 errors
+".\STM324xG_EVAL\STM324xG_EVAL.axf" - 44 Error(s), 8 Warning(s).
+Target not created
+nion type
+        TM_cp56_time->mday = RTC_DateStruct.RTC_Date;
+..\src\libiecasdu.c(168): error:  #132: expression must have pointer-to-struct-or-union type
+        TM_cp56_time->month = RTC_DateStruct.RTC_Month;
+..\src\libiecasdu.c(169): error:  #132: expression must have pointer-to-struct-or-union type
+        TM_cp56_time->wday = RTC_DateStruct.RTC_WeekDay;
+..\src\libiecasdu.c(170): error:  #132: expression must have pointer-to-struct-or-union type
+        TM_cp56_time->year = RTC_DateStruct.RTC_Year;
+..\src\libiecasdu.c: 1 warning, 25 errors
+compiling IEC104_drv.c...
+..\inc\libiecasdu.h(15): warning:  #231-D: declaration is not visible outside of function
+  void parse_iframe(fifo_t* fifo_buf, struct iec_buf *buf);
+..\inc\libiecasdu.h(18): error:  #20: identifier "cp56time2a" is undefined
+  void set_iec_time(cp56time2a* TM_cp56_time);
+..\inc\libiecasdu.h(19): error:  #20: identifier "cp56time2a" is undefined
+  void get_iec_time(cp56time2a* TM_cp56_time);
+..\inc\iec104_types.h(102): warning:  #375-D: declaration requires a typedef name
+  } ;
+..\inc\iec104_types.h(166): error:  #20: identifier "cp56time2a" is undefined
+        cp56time2a      time;
+..\inc\iec104_types.h(178): error:  #20: identifier "cp56time2a" is undefined
+        cp56time2a      time;
+..\inc\iec104_types.h(190): error:  #20: identifier "cp56time2a" is undefined
+        cp56time2a      time;
+..\inc\iec104_types.h(202): error:  #20: identifier "cp56time2a" is undefined
+        cp56time2a      time;
+..\inc\iec104_types.h(214): error:  #20: identifier "cp56time2a" is undefined
+        cp56time2a      time;
+..\src\IEC104_drv.c: 2 warnings, 7 errors
+".\STM324xG_EVAL\STM324xG_EVAL.axf" - 53 Error(s), 13 Warning(s).
+Target not created
