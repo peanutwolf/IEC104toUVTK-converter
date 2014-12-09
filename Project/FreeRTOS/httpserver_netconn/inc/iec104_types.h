@@ -46,6 +46,7 @@ extern "C" {
 #define INROGEN_COT 20	
 #define SPON_COT    3
 
+
 /* 32-bit string state and change data unit */
 struct iec_stcd {
 	u16_t		st[0];

@@ -41,3 +41,12 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+*.ES
+*.ES
+*.bak
+*.d
+Project/FreeRTOS/httpserver_netconn/MDK-ARM/STM324xG_EVAL/api_lib.d
+*.d
+*.o
+*.crf

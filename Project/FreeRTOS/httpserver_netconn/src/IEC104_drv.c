@@ -13,6 +13,8 @@ struct iec_type13_data ti_mas[IEC104_TI_SIZE];
 void IEC104_init_task(){
 	xTaskCreate(IEC104_UVTK_TS_poll, (int8_t *) "IEC104_UVTK_TS_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
 	xTaskCreate(IEC104_TS_poll, (int8_t *) "IEC104_TS_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
+	xTaskCreate(IEC104_UVTK_TI_poll, (int8_t *) "IEC104_UVTK_TI_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
+	xTaskCreate(IEC104_TI_poll, (int8_t *) "IEC104_TI_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
 }
 
 
@@ -61,36 +63,32 @@ void IEC104_TS_poll(void * pvParameters){
 	}
 }
 
+// TODO: fix float and uint8_t compare
+
 void IEC104_UVTK_TI_poll(void * pvParameters){
 	uint8_t i = 0;
 	uint8_t j = 0;
-	uint8_t UVTK_1ti_grp_data_tmp = 0;
-	uint8_t UVTK_2ti_grp_data_tmp = 0;
-	uint8_t iec104_1gr_num = 0;
-	uint8_t iec104_2gr_num = 0;
+
 	uint8_t uvtk_1gr_ti_tmp = 0;
 	uint8_t uvtk_2gr_ti_tmp = 0;
+	
 	for(;;){
 		for(i = 0; i < UVTK_TI_GR_SIZE; i++){
-			uint8_t UVTK_1ti_grp_data_tmp = UVTK_1ti_grp_data[i];
-			uint8_t UVTK_2ti_grp_data_tmp = UVTK_2ti_grp_data[i];
-			for(j = 0; j < 8; j++){
-				iec104_1gr_num = (i*8)+j;
-	      iec104_2gr_num = (i*8)+UVTK_TI_GR_SIZE+j;
-				uvtk_1gr_ti_tmp = (UVTK_1ti_grp_data_tmp>>j) & 0x01;
-				uvtk_2gr_ti_tmp = (UVTK_2ti_grp_data_tmp>>j) & 0x01;
-				if(ti_mas[iec104_1gr_num].mv.mv != uvtk_1gr_ti_tmp){
-					ti_mas[iec104_1gr_num].mv.mv = uvtk_1gr_ti_tmp;
-					ti_mas[iec104_1gr_num].spon = 0x01;
-				}
-				if(ti_mas[iec104_2gr_num].mv.mv != uvtk_2gr_ti_tmp){
-					ti_mas[iec104_2gr_num].mv.mv = uvtk_2gr_ti_tmp;
-					ti_mas[iec104_2gr_num].spon = 0x01;
-				}
+			uint8_t uvtk_1gr_ti_tmp = UVTK_1ti_grp_data[i];
+			uint8_t uvtk_2gr_ti_tmp = UVTK_2ti_grp_data[i];
+			if(ti_mas[i].mv.mv != (float)uvtk_1gr_ti_tmp){
+				ti_mas[i].mv.mv = (float)uvtk_1gr_ti_tmp;
+				//ti_mas[iec104_1gr_num].mv.mv = 46.5;
+				ti_mas[i].spon = 0x01;
+			}
+			if(ti_mas[i + UVTK_TI_GR_SIZE].mv.mv != (float)uvtk_2gr_ti_tmp){
+				ti_mas[i + UVTK_TI_GR_SIZE].mv.mv = (float)uvtk_2gr_ti_tmp;
+				ti_mas[i + UVTK_TI_GR_SIZE].spon = 0x01;
 			}
 		}
-		vTaskDelay(10);
+		vTaskDelay(1000);
 	}
+
 }
 
 void IEC104_TI_poll(void * pvParameters){
@@ -99,6 +97,7 @@ void IEC104_TI_poll(void * pvParameters){
 		for(i = 0; i < IEC104_TI_SIZE; i++){
 			if(ti_mas[i].spon != 0x00){
 				fifoPushElem(iec_fifo_buf, prepare_data_iframe(SPON_COT, M_ME_NC_1, i, 0x01));
+				//printf("spon %d, i = %d\n", ti_mas[i].spon, i);
 				ti_mas[i].spon = 0x00;
 			}
 		}

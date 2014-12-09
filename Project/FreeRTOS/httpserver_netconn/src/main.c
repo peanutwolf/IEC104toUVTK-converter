@@ -29,6 +29,7 @@
 #include "stm32f4x7_eth.h"
 #include "netconf.h"
 #include "main.h"
+#include "libiecasdu.h"
 #include "tcpip.h"
 #include "httpserver-netconn.h"
 #include "serial_debug.h"
@@ -54,6 +55,8 @@
 extern fifo_t* iec_fifo_buf;
 extern struct iec_type1 SP_mas[];
 xSemaphoreHandle xButtonSemaphore;
+
+static uint8_t* p;
 /* Private function prototypes -----------------------------------------------*/
 void LCD_LED_Init(void);
 void ToggleLed4(void * pvParameters);
@@ -183,10 +186,14 @@ void vButtonKeyHandler(void * pvParameters)
   {
      xSemaphoreTake( xButtonSemaphore, portMAX_DELAY );
 			if(STM_EVAL_PBGetState(BUTTON_KEY)){
-			  SP_mas[0].sp = 0x01;
+			 // SP_mas[0].sp = 0x01;
+				p = pvPortMalloc(1000);
+				printf("Heap alloc:%d\n",xPortGetFreeHeapSize());
 			}
 		  else{
-			  SP_mas[0].sp = 0x00;
+				vPortFree(p);
+				printf("Heap free:%d\n",xPortGetFreeHeapSize());
+			  //SP_mas[0].sp = 0x00;
 //					while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
 //					 // printf("sending 0x02\n");
 //						SPI_I2S_SendData(SPI3, 0x02);
@@ -205,7 +212,7 @@ void vButtonKeyHandler(void * pvParameters)
 //					  vTaskDelay(1);
 //					  STM_EVAL_LEDToggle(LED1);
 			}
-			fifoPushElem(iec_fifo_buf, prepare_data_iframe(SPON_COT, M_SP_TB_1, 0x00, 0x01));
+			//fifoPushElem(iec_fifo_buf, prepare_data_iframe(SPON_COT, M_SP_TB_1, 0x00, 0x01));
    }
 }
 

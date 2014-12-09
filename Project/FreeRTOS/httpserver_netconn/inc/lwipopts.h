@@ -118,7 +118,7 @@ a lot of data that needs to be copied, this should be set high. */
 /* Define LWIP_DHCP to 1 if you want DHCP configuration of
    interfaces. DHCP is not implemented in lwIP 0.5.1, however, so
    turning this on does currently not work. */
-#define LWIP_DHCP               1
+#define LWIP_DHCP               0
 
 
 /* ---------- UDP options ---------- */
@@ -191,7 +191,7 @@ The STM32F4x7 allows computing and verifying the IP, UDP, TCP and ICMP checksums
 /**
  * LWIP_NETCONN==1: Enable Netconn API (require to use api_lib.c)
  */
-#define LWIP_NETCONN                    1
+#define LWIP_NETCONN                    0
 
 /*
    ------------------------------------

@@ -3,7 +3,7 @@
 
 fifo_t* createFifoToHeap(u8_t elemSize, u8_t size)
 {
-    void* buffer = malloc(elemSize * size);
+    void* buffer = pvPortMalloc(elemSize * size);
 	
     if (buffer == NULL)
         return NULL;

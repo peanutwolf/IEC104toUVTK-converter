@@ -7,6 +7,7 @@
 /******************************************/
 
 #include "IEC104_server.h"
+#include "libiecasdu.h"
 
 struct pbuf* IEC104_send_buf;
 extern fifo_t* iec_fifo_buf;
@@ -29,10 +30,11 @@ struct pbuf* prepare_tcp_iec_buf(fifo_t* fifo_buf){
 	if(fifoIsEmpty(fifo_buf)){
 	    return NULL;
 	}
-	while(!fifoIsEmpty(fifo_buf) && i <= 0x08){
+	while(!fifoIsEmpty(fifo_buf) && i <= 0x00){
 	  buf = fifoPopElem(fifo_buf);
-		p_tmp = pbuf_alloc(PBUF_TRANSPORT, buf->data_len , PBUF_RAM);
+		p_tmp = pbuf_alloc(PBUF_TRANSPORT, buf->data_len , PBUF_POOL);
 		if(!p_tmp){
+			  printf("Cannot allocate p_tmp\n");
 				fifoPushElem(fifo_buf, buf);
 				return NULL;
 		}
@@ -45,10 +47,13 @@ struct pbuf* prepare_tcp_iec_buf(fifo_t* fifo_buf){
 				p = p_tmp;
 			}
 			i++;
+			printf("Free pointer:0x%p\n",buf);
 			vPortFree(buf);
 			buf = NULL;
+			printf("Heap after free:%d\n",xPortGetFreeHeapSize());
 		}  
 		else{
+			printf("ERR_OK is not OK");
 			fifoPushElem(fifo_buf, buf);
 			pbuf_free(p_tmp);
 			 while(p!=NULL){

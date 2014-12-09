@@ -18,8 +18,8 @@ void UVTK_init_task(){
 	vSemaphoreCreateBinary(xSPI_UVTK_Semaphore);
   xSemaphoreTake( xSPI_UVTK_Semaphore, portMAX_DELAY );	  // Take once just created semaphore
 	if(xSPI_UVTK_Mutex != NULL && xSPI_UVTK_Semaphore != NULL){
-		//xTaskCreate(UVTK_poll, (int8_t *) "UVTK_poll", configMINIMAL_STACK_SIZE, NULL, UVTK_TASK_PRIO, NULL);
-		//xTaskCreate(UVTK_TS_poll, (int8_t *) "UVTK_TS_poll", configMINIMAL_STACK_SIZE, NULL, UVTK_TASK_PRIO, NULL);
+		xTaskCreate(UVTK_poll, (int8_t *) "UVTK_poll", configMINIMAL_STACK_SIZE, NULL, UVTK_TASK_PRIO, NULL);
+		xTaskCreate(UVTK_TS_poll, (int8_t *) "UVTK_TS_poll", configMINIMAL_STACK_SIZE, NULL, UVTK_TASK_PRIO, NULL);
 	}
 	else{
 		STM_EVAL_LEDOn(LED2);

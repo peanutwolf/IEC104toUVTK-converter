@@ -3,8 +3,6 @@
 
 volatile u8_t NS = 0, NR = 0;
 struct iec_type9 MV_tmpl;
-struct iec_type30 iec_type30_tmpl;
-struct iec_type13 iec_type13_tmpl;
 cp56time2a TM_cp56_time;
 fifo_t* iec_fifo_buf;
 
@@ -14,7 +12,7 @@ struct iec_type1 SP_mas[SP_TOTAL] = {{0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0,
 struct iec_mv MV_mas[MV_TOTAL] = {{0xFF,0}, {0,0}, {0,0}, {0,0}, {0,0}};
 
 extern struct iec_type1_data ts_mas[IEC104_TS_SIZE];
-extern struct iec_type13 ti_mas[IEC104_TI_SIZE];
+extern struct iec_type13_data ti_mas[IEC104_TI_SIZE];
 
 
 void parse_iframe(fifo_t* fifo_buf, struct iec_buf* buf){
@@ -55,6 +53,7 @@ struct iec_buf* prepare_data_iframe(u8_t COT, u8_t type, u16_t inner_adr, u8_t n
 	volatile u8_t* objs_pnt = 0;
 	struct iec_buf* buf = NULL;
 	struct iec_unit_id* asdu_head = NULL;
+	struct iec_type30 iec_type30_tmpl;
 	
 	if(type == M_SP_NA_1){
 	   sizeof_obj = sizeof(struct iec_type1) + 3;
@@ -66,6 +65,7 @@ struct iec_buf* prepare_data_iframe(u8_t COT, u8_t type, u16_t inner_adr, u8_t n
 	}
 	else if(type == M_ME_NC_1){
 	   sizeof_obj = sizeof(struct iec_type13) + 3;
+		 printf("%d\n", sizeof_obj);
 		 ioa = inner_adr + MV_IOA_OFFSET;
 	}
 	else if(type == M_SP_TB_1){
@@ -78,9 +78,7 @@ struct iec_buf* prepare_data_iframe(u8_t COT, u8_t type, u16_t inner_adr, u8_t n
 		 ioa = inner_adr;
 	}
 	frame_size = sizeof(struct iechdr) + sizeof(struct iec_unit_id) + sizeof_obj * num;
-	printf("Heap:%d\n",xPortGetFreeHeapSize());
 	buf = pvPortMalloc(frame_size);	
-	printf("Heap:%d\n",xPortGetFreeHeapSize());
 	printf("Pointer:0x%p\n",buf);
 	
 	buf->data_len = frame_size;
@@ -134,9 +132,7 @@ struct iec_buf* prepare_sframe(void){
 	
 struct iec_buf* buf = NULL;
 	
-	printf("Heap:%d\n",xPortGetFreeHeapSize());
 	buf = pvPortMalloc(sizeof(struct iec_buf));
-	printf("Heap:%d\n",xPortGetFreeHeapSize());
 	buf->data_len = 0x06;
   buf->h.start = 0x68;
 	buf->h.length = 0x04;
