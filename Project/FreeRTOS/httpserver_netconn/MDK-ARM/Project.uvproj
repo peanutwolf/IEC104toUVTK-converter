@@ -214,7 +214,7 @@
             <hadIRAM>1</hadIRAM>
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
-            <RvdsVP>2</RvdsVP>
+            <RvdsVP>1</RvdsVP>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -478,16 +478,6 @@
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\stm32f4xx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>fs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\fs.c</FilePath>
-            </File>
-            <File>
-              <FileName>httpserver-netconn.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\httpserver-netconn.c</FilePath>
             </File>
             <File>
               <FileName>serial_debug.c</FileName>
@@ -1325,16 +1315,6 @@
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\stm32f4xx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>fs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\fs.c</FilePath>
-            </File>
-            <File>
-              <FileName>httpserver-netconn.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\httpserver-netconn.c</FilePath>
             </File>
             <File>
               <FileName>serial_debug.c</FileName>

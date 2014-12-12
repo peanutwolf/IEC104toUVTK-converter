@@ -1,18 +1,18 @@
+/***********************************************************************/
+/***************TODO****************************************************/
+/* 1. Make timers functionality for INROGEN            								 */
+/* 1. Make defines for INROGEN         												 			   */
+/***********************************************************************/
+
 
 #include "libiecasdu.h"
 
 volatile u8_t NS = 0, NR = 0;
-struct iec_type9 MV_tmpl;
 cp56time2a TM_cp56_time;
 fifo_t* iec_fifo_buf;
 
-struct iec_type1 SP_mas[SP_TOTAL] = {{0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, 
-															 {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}};
-
-struct iec_mv MV_mas[MV_TOTAL] = {{0xFF,0}, {0,0}, {0,0}, {0,0}, {0,0}};
-
 extern struct iec_type1_data ts_mas[IEC104_TS_SIZE];
-extern struct iec_type13_data ti_mas[IEC104_TI_SIZE];
+extern struct iec_type9_data ti_mas[IEC104_TI_SIZE];
 
 
 void parse_iframe(fifo_t* fifo_buf, struct iec_buf* buf){
@@ -32,11 +32,13 @@ void parse_iframe(fifo_t* fifo_buf, struct iec_buf* buf){
 			 case C_IC_NA_1:
 			   if(asdu_head->cause == ACT_COT){
   				  vPortFree(buf);
-					  fifoPushElem(fifo_buf, prepare_data_iframe(ACTCON_COT, C_IC_NA_1, 0x00, 0x01));	 
+					  fifoPushElem(fifo_buf, prepare_data_iframe(ACTCON_COT,  C_IC_NA_1, 0x00, 0x01));	 
 					  fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x00, 0x20));	
 						fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x20, 0x20));
-					  fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NC_1, 0x00, 0x10));
-					  fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NC_1, 0x10, 0x10));
+						fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x40, 0x20));	
+						fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x60, 0x20));
+					  fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NA_1, 0x00, 0x10));
+					  fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NA_1, 0x10, 0x10));
 						//fifoPushElem(iec_fifo_buf, prepare_data_iframe(SPON_COT, M_SP_TB_1, 0x00, 0x01));					 
 				 }
 			   break;
@@ -108,12 +110,10 @@ struct iec_buf* prepare_data_iframe(u8_t COT, u8_t type, u16_t inner_adr, u8_t n
 			memcpy((void*)++objs_pnt, &(ts_mas[inner_adr+i].sp), sizeof(struct iec_type1));
 		}
 		else if(type == M_ME_NA_1){
-			MV_tmpl.mv = ((struct iec_mv)MV_mas[inner_adr+i]).mv;
-			MV_tmpl.iv = ((struct iec_mv)MV_mas[inner_adr+i]).iv;
-			memcpy((void*)++objs_pnt, &MV_tmpl, sizeof(struct iec_type9));
+			memcpy((void*)++objs_pnt, &(ti_mas[inner_adr+i].mv), sizeof(struct iec_type9));
 		}
 		else if(type == M_ME_NC_1){
-			memcpy((void*)++objs_pnt, &(ti_mas[inner_adr+i].mv), sizeof(struct iec_type13));
+			//memcpy((void*)++objs_pnt, &(ti_mas[inner_adr+i].mv), sizeof(struct iec_type13));
 		}
 		else if(type == M_SP_TB_1){
 			memcpy(&iec_type30_tmpl, &(ts_mas[inner_adr+i].sp), sizeof(struct iec_type1));

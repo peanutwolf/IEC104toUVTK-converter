@@ -3,7 +3,8 @@
 /* 1. Correct parse i_frame.              */
 /* 2. Linked List to store iec_bufs - OK! */
 /* 3. Func to form correct pbufs - OK!    */
-/* 4. Make RTC functionality              */
+/* 4. Make RTC functionality - OK!        															 */
+/* 5. Bug in prepare_tcp_iec_buf() - pbuf_chain() makes hard fault  -OK!      */
 /******************************************/
 
 #include "IEC104_server.h"
@@ -20,7 +21,7 @@ void init_IEC104_server(void){
 
 /**************************************************
 * Generates chain of pbufs to be sent to Eth interface
-* Set i <= (number of pbufs in chain);
+* Set CHAIN_NUM_PBUFS (number of pbufs in chain);
 **************************************************/
 struct pbuf* prepare_tcp_iec_buf(fifo_t* fifo_buf){
   struct pbuf *p = NULL, *p_tmp = NULL;
@@ -30,9 +31,9 @@ struct pbuf* prepare_tcp_iec_buf(fifo_t* fifo_buf){
 	if(fifoIsEmpty(fifo_buf)){
 	    return NULL;
 	}
-	while(!fifoIsEmpty(fifo_buf) && i <= 0x00){
+	while(!fifoIsEmpty(fifo_buf) && i <= CHAIN_NUM_PBUFS){
 	  buf = fifoPopElem(fifo_buf);
-		p_tmp = pbuf_alloc(PBUF_TRANSPORT, buf->data_len , PBUF_POOL);
+		p_tmp = pbuf_alloc(PBUF_TRANSPORT, buf->data_len , PBUF_RAM);
 		if(!p_tmp){
 			  printf("Cannot allocate p_tmp\n");
 				fifoPushElem(fifo_buf, buf);
@@ -156,14 +157,14 @@ struct pbuf* generatIECansw(struct pbuf* p){
 			buf = NULL;
 		}
 		IEC104_send_buf = prepare_tcp_iec_buf(iec_fifo_buf);
-		  if(IEC104_send_buf != NULL){
+		 // if(IEC104_send_buf != NULL){
 				 while(p != NULL){
 				   ptr = p;
 				   p = ptr->next;
 				   pbuf_free(ptr);	
 			   }		     
 		    p = IEC104_send_buf;
-			}
+		//	}
  return p;
 }
 

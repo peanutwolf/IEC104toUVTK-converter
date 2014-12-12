@@ -238,8 +238,8 @@ struct iec_type1_data {
 }__attribute__((__packed__));
 
 /* Custom struct for IEC104_task_poll */
-struct iec_type13_data {
-	struct iec_type13 mv;
+struct iec_type9_data {
+	struct iec_type9 mv;
 	u8_t		spon	:1;	/* is signal state changed */
 }__attribute__((__packed__));
 

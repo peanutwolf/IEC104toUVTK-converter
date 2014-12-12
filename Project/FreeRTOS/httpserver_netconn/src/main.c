@@ -53,7 +53,6 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 extern fifo_t* iec_fifo_buf;
-extern struct iec_type1 SP_mas[];
 xSemaphoreHandle xButtonSemaphore;
 
 static uint8_t* p;
@@ -186,14 +185,12 @@ void vButtonKeyHandler(void * pvParameters)
   {
      xSemaphoreTake( xButtonSemaphore, portMAX_DELAY );
 			if(STM_EVAL_PBGetState(BUTTON_KEY)){
-			 // SP_mas[0].sp = 0x01;
 				p = pvPortMalloc(1000);
 				printf("Heap alloc:%d\n",xPortGetFreeHeapSize());
 			}
 		  else{
 				vPortFree(p);
 				printf("Heap free:%d\n",xPortGetFreeHeapSize());
-			  //SP_mas[0].sp = 0x00;
 //					while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
 //					 // printf("sending 0x02\n");
 //						SPI_I2S_SendData(SPI3, 0x02);

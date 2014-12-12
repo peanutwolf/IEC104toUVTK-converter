@@ -1,3 +1,8 @@
+/******************************************/
+/***************TODO***********************/
+/* 1. make correct inversion set to UVTK  */
+/******************************************/
+
 #include "UVTKdrv.h"
 
 xSemaphoreHandle xSPI_UVTK_Mutex = NULL;
@@ -9,8 +14,8 @@ const uint8_t UVTK_inrogenTI2 [UVTK_INROGEN_MSG_SIZE] = {0x02, KP_ADR, 0x24, 0x1
 const uint8_t* const UVTK_inrogenData[UVTK_INROGEN_QUEUE_SIZE] = {UVTK_inrogenTI1, UVTK_inrogenTI2, UVTK_inrogenTS, UVTK_inrogenTI1, UVTK_inrogenTI2};
 uint8_t UVTK_1ts_grp_data[UVTK_TS_GR_SIZE];
 uint8_t UVTK_2ts_grp_data[UVTK_TS_GR_SIZE];
-uint8_t UVTK_1ti_grp_data[UVTK_TI_GR_SIZE];
-uint8_t UVTK_2ti_grp_data[UVTK_TI_GR_SIZE];
+uint16_t UVTK_1ti_grp_data[UVTK_TI_GR_SIZE];
+uint16_t UVTK_2ti_grp_data[UVTK_TI_GR_SIZE];
 
 
 void UVTK_init_task(){
@@ -48,7 +53,6 @@ void UVTK_poll(void * pvParameters)
 					SPI_I2S_SendData(SPI3, 0x00);
 		}
 		xSemaphoreTake(xSPI_UVTK_Semaphore, portMAX_DELAY);
-		//printf("0x%08x\n",SPI_data);
 		UVTK_msg_cnt = SPI_data;
 		for(i = 0; i < UVTK_msg_cnt; i++){
 			if(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == RESET){
@@ -57,16 +61,17 @@ void UVTK_poll(void * pvParameters)
 			}
 			xSemaphoreTake(xSPI_UVTK_Semaphore, portMAX_DELAY);
 			printf("in for 0x%08x\n",SPI_data);
-			if(i == 0x03){
+			if(((i == 0x00) && (SPI_data != 0x7E))){
+					break;
+			}
+			else if(i == 0x03){
 				UVTK_msg_type = SPI_data;		
 				switch(UVTK_msg_type & 0x0F){
 				case 0x0C:
-					UVTK_msg_data_size = UVTK_TS_GR_SIZE;
-				  //printf("switch msg type 0x%08x\n",UVTK_msg_type);
+					UVTK_msg_data_size = UVTK_TS_GR_SIZE + 0x04;
 				  break;
 				case 0x05:
-					UVTK_msg_data_size = UVTK_TI_GR_SIZE;
-				  //printf("switch msg type 0x%08x\n",UVTK_msg_type);
+					UVTK_msg_data_size = UVTK_TI_GR_SIZE + 0x04;
 					break;
 				default:
 					break;
@@ -81,12 +86,12 @@ void UVTK_poll(void * pvParameters)
 						UVTK_2ts_grp_data[i-0x04] = SPI_data;
 						break;
 					case 0x05:
-						UVTK_1ti_grp_data[i-0x04] = SPI_data;
+						UVTK_1ti_grp_data[i-0x04] = (uint16_t)SPI_data;
 						break;
 					case 0x15:
-						UVTK_2ti_grp_data[i-0x04] = SPI_data;
+						UVTK_2ti_grp_data[i-0x04] = (uint16_t)SPI_data;
 						break;
-					default:
+					default:				
 						break;
 				}
 			}
@@ -113,7 +118,7 @@ void UVTK_TS_poll(void * pvParameters)
 			xSemaphoreTake(xSPI_UVTK_Semaphore, portMAX_DELAY);
 			STM_EVAL_LEDToggle(LED4);
 			xSemaphoreGive(xSPI_UVTK_Mutex);
-			vTaskDelay(30000);
+			vTaskDelay(20000);
 		}
   }
 }

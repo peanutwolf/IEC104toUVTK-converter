@@ -181,16 +181,17 @@ static err_t iecsock_server_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p
     iec_struct->state = IEC_RECEIVED;
 		if(start == 0x68){
 		  p = generatIECansw(p);
+			iec_struct->p = p;	
+			if(iec_struct->p != NULL){
+				iecsock_server_send(iec_struct->pcb, iec_struct);
+			}
+		}    
+		else{
+			pbuf_free(p);
 		}
-    /* store reference to incoming pbuf (chain) */
-    iec_struct->p = p;	
-    
     /* initialize LwIP tcp_sent callback function */
     tcp_sent(tpcb, iecsock_server_sent);
-    
-    /* send back the received data (echo) */
-    iecsock_server_send(iec_struct->pcb, iec_struct);
-    
+		
     ret_err = ERR_OK;
   }
   else if (iec_struct->state == IEC_RECEIVED)
@@ -200,14 +201,18 @@ static err_t iecsock_server_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p
     {   
 		  if(start == 0x68){
 		     p = generatIECansw(p);
+				 iec_struct->p = p;
+				 if(iec_struct->p != NULL){
+					 iecsock_server_send(iec_struct->pcb, iec_struct);
+				 }
 		  }
-      iec_struct->p = p;
-      iecsock_server_send(iec_struct->pcb, iec_struct);
+      else{
+				 pbuf_free(p);
+			}
     }
     else
     {
       struct pbuf *ptr;
-
       /* chain pbufs to the end of what we recv'ed previously  */
       ptr = iec_struct->p;
       pbuf_chain(ptr,p);
@@ -349,12 +354,13 @@ static void iecsock_server_send(struct tcp_pcb *tpcb, struct iecsock_struct *iec
      
       /* continue with next pbuf in chain (if any) */
       iec_struct->p = ptr->next;
-      
-      if(iec_struct->p != NULL)
-      {
-        /* increment reference count for es->p */
-        pbuf_ref(iec_struct->p);
-      }
+			
+// 			Uncommenting this makes hard fault      
+//      if(iec_struct->p != NULL)
+//      {
+//        /* increment reference count for es->p */
+//        pbuf_ref(iec_struct->p);
+//      }
       
       /* free pbuf: will free pbufs up to es->p (because es->p has a reference count > 0) */
       pbuf_free(ptr);

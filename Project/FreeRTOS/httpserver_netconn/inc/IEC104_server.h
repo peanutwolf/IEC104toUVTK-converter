@@ -11,10 +11,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define IEC104_HEADER_SIZE 6
+#define IEC104_HEADER_SIZE 		6
+#define CHAIN_NUM_PBUFS 			2
 
-
-extern const u8_t IEC104_data[];
 
 enum mode_type{
 	IEC_SLAVE,
