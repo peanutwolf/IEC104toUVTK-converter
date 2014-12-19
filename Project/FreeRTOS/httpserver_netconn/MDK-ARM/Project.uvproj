@@ -690,14 +690,14 @@
               <FilePath>..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS\sys_arch.c</FilePath>
             </File>
             <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\core\timers.c</FilePath>
-            </File>
-            <File>
               <FileName>def.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\core\def.c</FilePath>
+            </File>
+            <File>
+              <FileName>lwip_timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\core\lwip_timers.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -779,6 +779,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_iwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -838,6 +843,11 @@
               <FileName>queue.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\timers.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1527,14 +1537,14 @@
               <FilePath>..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS\sys_arch.c</FilePath>
             </File>
             <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\core\timers.c</FilePath>
-            </File>
-            <File>
               <FileName>def.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\core\def.c</FilePath>
+            </File>
+            <File>
+              <FileName>lwip_timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\core\lwip_timers.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1616,6 +1626,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_iwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_iwdg.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1675,6 +1690,11 @@
               <FileName>queue.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\timers.c</FilePath>
             </File>
           </Files>
         </Group>

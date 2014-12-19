@@ -16,5 +16,6 @@ void IEC104_UVTK_TS_poll(void * pvParameters);
 void IEC104_TS_poll(void * pvParameters);
 void IEC104_UVTK_TI_poll(void * pvParameters);
 void IEC104_TI_poll(void * pvParameters);
+void IEC104_UVTK_IV_poll(void * pvParameters);
 
 #endif

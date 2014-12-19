@@ -1,13 +1,16 @@
 /******************************************/
 /***************TODO***********************/
-/* 1. make correct inversion set to UVTK  */
+/* 1. make correct inversion set to UVTK - OK */
 /******************************************/
 
 #include "UVTKdrv.h"
 
 xSemaphoreHandle xSPI_UVTK_Mutex = NULL;
 xSemaphoreHandle xSPI_UVTK_Semaphore = NULL;
+xTimerHandle xUVTKTimer = NULL;
 uint8_t SPI_data = 0x00;
+UVTKState UVTK_timer[NUM_TIMERS] = {{NULL, 0x00, 0x00, 0x0C, 0x00}, {NULL, 0x00, 0x00, 0x1C, 0x00},
+																		{NULL, 0x00, 0x00, 0x05, 0x00}, {NULL, 0x00, 0x00, 0x15, 0x00}};
 const uint8_t UVTK_inrogenTS [UVTK_INROGEN_MSG_SIZE] = {0x02, KP_ADR, 0x24, 0x0C, 0x00};
 const uint8_t UVTK_inrogenTI1 [UVTK_INROGEN_MSG_SIZE] = {0x02, KP_ADR, 0x24, 0x05, 0x00};
 const uint8_t UVTK_inrogenTI2 [UVTK_INROGEN_MSG_SIZE] = {0x02, KP_ADR, 0x24, 0x15, 0x00};
@@ -19,12 +22,20 @@ uint16_t UVTK_2ti_grp_data[UVTK_TI_GR_SIZE];
 
 
 void UVTK_init_task(){
+	uint8_t i =0;
 	xSPI_UVTK_Mutex = xSemaphoreCreateMutex();
 	vSemaphoreCreateBinary(xSPI_UVTK_Semaphore);
   xSemaphoreTake( xSPI_UVTK_Semaphore, portMAX_DELAY );	  // Take once just created semaphore
 	if(xSPI_UVTK_Mutex != NULL && xSPI_UVTK_Semaphore != NULL){
 		xTaskCreate(UVTK_poll, (int8_t *) "UVTK_poll", configMINIMAL_STACK_SIZE, NULL, UVTK_TASK_PRIO, NULL);
 		xTaskCreate(UVTK_TS_poll, (int8_t *) "UVTK_TS_poll", configMINIMAL_STACK_SIZE, NULL, UVTK_TASK_PRIO, NULL);
+		UVTK_set_inv(UVTK_INV_CODE);
+		for(i = 0; i < NUM_TIMERS; i++){
+			UVTK_timer[i].xUVTKTimer = xTimerCreate((const signed char *)"UVTKTimer", (IV_DELAY), pdTRUE, (void*)i, vUVTKTimerCallback);
+		}
+		xTimerReset(UVTK_timer[2].xUVTKTimer, 0);
+		xTimerStart(UVTK_timer[2].xUVTKTimer, 0);
+		UVTK_timer[2].timer_started = 0x01;
 	}
 	else{
 		STM_EVAL_LEDOn(LED2);
@@ -39,6 +50,7 @@ void UVTK_init_task(){
   * @brief  UVTK Poll Task
   * @param  pvParameters not used
   * @retval None
+	* @TODO 	If we have message 0xFF 0x7E than we have not fixed bug,
   */
 void UVTK_poll(void * pvParameters)
 {
@@ -49,16 +61,14 @@ void UVTK_poll(void * pvParameters)
   for( ;; )
   {
 	  xSemaphoreTake( xSPI_UVTK_Mutex, portMAX_DELAY );
-    if(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == RESET){
-					SPI_I2S_SendData(SPI3, 0x00);
-		}
+    while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
+			SPI_I2S_SendData(SPI3, 0x00);
 		xSemaphoreTake(xSPI_UVTK_Semaphore, portMAX_DELAY);
 		UVTK_msg_cnt = SPI_data;
 		for(i = 0; i < UVTK_msg_cnt; i++){
-			if(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == RESET){
+			while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
 				vTaskDelay(1);
 				SPI_I2S_SendData(SPI3, 0x00);		
-			}
 			xSemaphoreTake(xSPI_UVTK_Semaphore, portMAX_DELAY);
 			printf("in for 0x%08x\n",SPI_data);
 			if(((i == 0x00) && (SPI_data != 0x7E))){
@@ -66,11 +76,29 @@ void UVTK_poll(void * pvParameters)
 			}
 			else if(i == 0x03){
 				UVTK_msg_type = SPI_data;		
-				switch(UVTK_msg_type & 0x0F){
+				switch(UVTK_msg_type){
 				case 0x0C:
+					UVTK_timer[0].is_iv = 0x00;
+					UVTK_timer[0].timer_started = 0x00;
+					xTimerStop(UVTK_timer[0].xUVTKTimer, 0);
+					UVTK_msg_data_size = UVTK_TS_GR_SIZE + 0x04;
+				  break;
+				case 0x1C:
+					UVTK_timer[1].is_iv = 0x00;
+					UVTK_timer[1].timer_started = 0x00;
+					xTimerStop(UVTK_timer[1].xUVTKTimer, 0);
 					UVTK_msg_data_size = UVTK_TS_GR_SIZE + 0x04;
 				  break;
 				case 0x05:
+					UVTK_timer[2].is_iv = 0x00;
+					UVTK_timer[2].timer_started = 0x00;
+					xTimerStop(UVTK_timer[2].xUVTKTimer, 0);
+					UVTK_msg_data_size = UVTK_TI_GR_SIZE + 0x04;
+					break;
+				case 0x15:
+					UVTK_timer[3].is_iv = 0x00;
+					UVTK_timer[3].timer_started = 0x00;
+					xTimerStop(UVTK_timer[3].xUVTKTimer, 0);
 					UVTK_msg_data_size = UVTK_TI_GR_SIZE + 0x04;
 					break;
 				default:
@@ -110,16 +138,59 @@ void UVTK_poll(void * pvParameters)
 void UVTK_TS_poll(void * pvParameters)
 {
 	uint8_t i = 0;
+	uint8_t n = 0;
   for( ;; )
   {
 		for(i = 0; i < UVTK_INROGEN_QUEUE_SIZE; i++){
 			xSemaphoreTake( xSPI_UVTK_Mutex, portMAX_DELAY );
 			SPI_SendDataArray(SPI3, UVTK_inrogenData[i], UVTK_INROGEN_MSG_SIZE);
-			xSemaphoreTake(xSPI_UVTK_Semaphore, portMAX_DELAY);
+			for(n = 0; (UVTK_inrogenData[i][3] != UVTK_timer[n].data_type) && (n < NUM_TIMERS); n++){}
+			if(n == 0){
+				if(UVTK_timer[n+1].timer_started != 0x01){
+					xTimerReset(UVTK_timer[n+1].xUVTKTimer, 0);
+					xTimerStart(UVTK_timer[n+1].xUVTKTimer, 0);
+					UVTK_timer[n+1].timer_started = 0x01;
+				}
+			}
+			if(UVTK_timer[n].timer_started != 0x01){
+				xTimerReset(UVTK_timer[n].xUVTKTimer, 0);
+				xTimerStart(UVTK_timer[n].xUVTKTimer, 0);
+				UVTK_timer[n].timer_started = 0x01;
+			}
 			STM_EVAL_LEDToggle(LED4);
 			xSemaphoreGive(xSPI_UVTK_Mutex);
-			vTaskDelay(20000);
+			vTaskDelay(UVTK_POLL_DELAY);
 		}
   }
+}
+
+void UVTK_set_inv(uint8_t inv){
+	xSemaphoreTake( xSPI_UVTK_Mutex, portMAX_DELAY );
+	 while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
+					SPI_I2S_SendData(SPI3, 0x01);
+		xSemaphoreTake(xSPI_UVTK_Semaphore, portMAX_DELAY);
+	 while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
+					SPI_I2S_SendData(SPI3, inv);
+		xSemaphoreTake(xSPI_UVTK_Semaphore, portMAX_DELAY);
+		while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
+					SPI_I2S_SendData(SPI3, 0x00);
+		xSemaphoreTake(xSPI_UVTK_Semaphore, portMAX_DELAY);
+  xSemaphoreGive(xSPI_UVTK_Mutex);
+}
+
+void vUVTKTimerCallback( xTimerHandle pxTimer ){
+	uint8_t timerIndex;
+	
+	configASSERT(pxTimer);
+	timerIndex = (uint8_t) pvTimerGetTimerID( pxTimer );
+	if(timerIndex == INROGEN_TIMER_ID){
+		xTimerStop(pxTimer, 0);
+	}
+	else{
+		UVTK_timer[timerIndex].is_iv = 0x01;
+		UVTK_timer[timerIndex].timer_started = 0x00;
+		xTimerStop(pxTimer, 0);
+		printf("Timer! %d\n", UVTK_timer[timerIndex].data_type);
+	}
 }
 

@@ -19,7 +19,6 @@
 .\stm324xg_eval\etharp.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/memp_std.h
 .\stm324xg_eval\etharp.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/snmp.h
 .\stm324xg_eval\etharp.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/dhcp.h
-.\stm324xg_eval\etharp.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/udp.h
 .\stm324xg_eval\etharp.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/autoip.h
 .\stm324xg_eval\etharp.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif/etharp.h
 .\stm324xg_eval\etharp.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\string.h

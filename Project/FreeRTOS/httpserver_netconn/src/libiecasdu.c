@@ -1,7 +1,7 @@
 /***********************************************************************/
 /***************TODO****************************************************/
 /* 1. Make timers functionality for INROGEN            								 */
-/* 1. Make defines for INROGEN         												 			   */
+/* 2. Make defines for INROGEN         												 			   */
 /***********************************************************************/
 
 
@@ -10,9 +10,12 @@
 volatile u8_t NS = 0, NR = 0;
 cp56time2a TM_cp56_time;
 fifo_t* iec_fifo_buf;
+struct iec_type30 iec_type30_tmpl = {0,0,0,0,0,0,0};
+struct iec_type34 iec_type34_tmpl = {0,0,0,0,0,0,0};
 
 extern struct iec_type1_data ts_mas[IEC104_TS_SIZE];
 extern struct iec_type9_data ti_mas[IEC104_TI_SIZE];
+extern xTimerHandle INROGEN_timer;
 
 
 void parse_iframe(fifo_t* fifo_buf, struct iec_buf* buf){
@@ -32,14 +35,17 @@ void parse_iframe(fifo_t* fifo_buf, struct iec_buf* buf){
 			 case C_IC_NA_1:
 			   if(asdu_head->cause == ACT_COT){
   				  vPortFree(buf);
-					  fifoPushElem(fifo_buf, prepare_data_iframe(ACTCON_COT,  C_IC_NA_1, 0x00, 0x01));	 
-					  fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x00, 0x20));	
-						fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x20, 0x20));
-						fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x40, 0x20));	
-						fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x60, 0x20));
-					  fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NA_1, 0x00, 0x10));
-					  fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NA_1, 0x10, 0x10));
-						//fifoPushElem(iec_fifo_buf, prepare_data_iframe(SPON_COT, M_SP_TB_1, 0x00, 0x01));					 
+					  fifoPushElem(fifo_buf, prepare_data_iframe(ACTCON_COT,  C_IC_NA_1, 0x00, 0x01));	
+						if(xTimerIsTimerActive(INROGEN_timer) == pdFALSE){
+							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x00, 0x20));	
+							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x20, 0x20));
+							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x40, 0x20));	
+							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x60, 0x20));
+							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NA_1, 0x00, 0x10));
+							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NA_1, 0x10, 0x10));	
+							xTimerReset(INROGEN_timer, 0);
+							xTimerStart(INROGEN_timer, 0);
+						}
 				 }
 			   break;
 			 default:
@@ -55,7 +61,6 @@ struct iec_buf* prepare_data_iframe(u8_t COT, u8_t type, u16_t inner_adr, u8_t n
 	volatile u8_t* objs_pnt = 0;
 	struct iec_buf* buf = NULL;
 	struct iec_unit_id* asdu_head = NULL;
-	struct iec_type30 iec_type30_tmpl;
 	
 	if(type == M_SP_NA_1){
 	   sizeof_obj = sizeof(struct iec_type1) + 3;
@@ -65,14 +70,14 @@ struct iec_buf* prepare_data_iframe(u8_t COT, u8_t type, u16_t inner_adr, u8_t n
 	   sizeof_obj = sizeof(struct iec_type9) + 3;
 		 ioa = inner_adr + MV_IOA_OFFSET;
 	}
-	else if(type == M_ME_NC_1){
-	   sizeof_obj = sizeof(struct iec_type13) + 3;
-		 printf("%d\n", sizeof_obj);
-		 ioa = inner_adr + MV_IOA_OFFSET;
-	}
 	else if(type == M_SP_TB_1){
-	   sizeof_obj = sizeof(struct iec_type30) + 3;
+	   sizeof_obj = sizeof(struct iec_type30) + 2;
 		 ioa = inner_adr + SP_IOA_OFFSET;
+		 get_iec_time(&TM_cp56_time);
+	}
+	else if(type == M_ME_TD_1){
+	   sizeof_obj = sizeof(struct iec_type34) + 2;
+		 ioa = inner_adr + MV_IOA_OFFSET;
 		 get_iec_time(&TM_cp56_time);
 	}
 	else if(type == C_IC_NA_1 || type == C_CS_NA_1){
@@ -103,8 +108,9 @@ struct iec_buf* prepare_data_iframe(u8_t COT, u8_t type, u16_t inner_adr, u8_t n
 	objs_pnt = (u8_t*)(++asdu_head);  //!!!be careful asdu_head doesnt point to asdu_head anymore!!!
 
 	for(i = 0; i < num; i++){
-		*objs_pnt = ioa++;
+		*objs_pnt = ioa;
 		*(++objs_pnt) = ioa>>8;	
+		ioa++;
 		*(++objs_pnt) = 0x00;		
 		if(type == M_SP_NA_1){
 			memcpy((void*)++objs_pnt, &(ts_mas[inner_adr+i].sp), sizeof(struct iec_type1));
@@ -112,8 +118,10 @@ struct iec_buf* prepare_data_iframe(u8_t COT, u8_t type, u16_t inner_adr, u8_t n
 		else if(type == M_ME_NA_1){
 			memcpy((void*)++objs_pnt, &(ti_mas[inner_adr+i].mv), sizeof(struct iec_type9));
 		}
-		else if(type == M_ME_NC_1){
-			//memcpy((void*)++objs_pnt, &(ti_mas[inner_adr+i].mv), sizeof(struct iec_type13));
+		else if(type == M_ME_TD_1){
+			memcpy(&iec_type34_tmpl, &(ti_mas[inner_adr+i].mv), sizeof(struct iec_type9));
+			iec_type34_tmpl.time = TM_cp56_time;
+			memcpy((void*)++objs_pnt, &iec_type34_tmpl, sizeof(struct iec_type34));
 		}
 		else if(type == M_SP_TB_1){
 			memcpy(&iec_type30_tmpl, &(ts_mas[inner_adr+i].sp), sizeof(struct iec_type1));

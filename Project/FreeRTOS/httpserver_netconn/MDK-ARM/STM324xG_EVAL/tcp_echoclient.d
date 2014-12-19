@@ -73,4 +73,5 @@
 .\stm324xg_eval\tcp_echoclient.o: ..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_lcd.h
 .\stm324xg_eval\tcp_echoclient.o: ..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\../Common/fonts.h
 .\stm324xg_eval\tcp_echoclient.o: ..\inc\UVTKdrv.h
+.\stm324xg_eval\tcp_echoclient.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h
 .\stm324xg_eval\tcp_echoclient.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\string.h

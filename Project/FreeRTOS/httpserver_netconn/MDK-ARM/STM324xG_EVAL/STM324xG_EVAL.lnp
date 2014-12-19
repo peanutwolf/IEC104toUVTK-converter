@@ -1,12 +1,10 @@
---cpu Cortex-M4.fp
+--cpu Cortex-M4
 ".\stm324xg_eval\system_stm32f4xx.o"
 ".\stm324xg_eval\startup_stm32f4xx.o"
 ".\stm324xg_eval\main.o"
 ".\stm324xg_eval\netconf.o"
 ".\stm324xg_eval\stm32f4x7_eth_bsp.o"
 ".\stm324xg_eval\stm32f4xx_it.o"
-".\stm324xg_eval\fs.o"
-".\stm324xg_eval\httpserver-netconn.o"
 ".\stm324xg_eval\serial_debug.o"
 ".\stm324xg_eval\tcp_echoclient.o"
 ".\stm324xg_eval\iec104_server.o"
@@ -48,8 +46,8 @@
 ".\stm324xg_eval\etharp.o"
 ".\stm324xg_eval\ethernetif.o"
 ".\stm324xg_eval\sys_arch.o"
-".\stm324xg_eval\timers.o"
 ".\stm324xg_eval\def.o"
+".\stm324xg_eval\lwip_timers.o"
 ".\stm324xg_eval\stm32f4xx_usart.o"
 ".\stm324xg_eval\misc.o"
 ".\stm324xg_eval\stm32f4xx_adc.o"
@@ -65,6 +63,7 @@
 ".\stm324xg_eval\stm32f4xx_rtc.o"
 ".\stm324xg_eval\stm32f4xx_pwr.o"
 ".\stm324xg_eval\stm32f4xx_spi.o"
+".\stm324xg_eval\stm32f4xx_iwdg.o"
 ".\stm324xg_eval\stm32f4x7_eth.o"
 ".\stm324xg_eval\stm324x7i_eval.o"
 ".\stm324xg_eval\stm324x7i_eval_lcd.o"
@@ -74,6 +73,7 @@
 ".\stm324xg_eval\croutine.o"
 ".\stm324xg_eval\list.o"
 ".\stm324xg_eval\queue.o"
+".\stm324xg_eval\timers.o"
 --library_type=microlib --strict --scatter ".\STM324xG_EVAL\STM324xG_EVAL.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

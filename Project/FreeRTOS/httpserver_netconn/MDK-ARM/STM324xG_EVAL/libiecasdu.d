@@ -31,8 +31,10 @@
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3\portmacro.h
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\mpu_wrappers.h
 .\stm324xg_eval\libiecasdu.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdlib.h
-.\stm324xg_eval\libiecasdu.o: ..\inc\libiecasdu.h
 .\stm324xg_eval\libiecasdu.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\string.h
+.\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h
+.\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\list.h
+.\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\task.h
 .\stm324xg_eval\libiecasdu.o: ..\inc\iec104_types.h
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Libraries\CMSIS\Include\core_cm4.h
@@ -70,10 +72,9 @@
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
 .\stm324xg_eval\libiecasdu.o: ..\inc\IEC104_drv.h
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS\sys_arch.h
-.\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\task.h
-.\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\list.h
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\queue.h
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\semphr.h
+.\stm324xg_eval\libiecasdu.o: ..\inc\libiecasdu.h
 .\stm324xg_eval\libiecasdu.o: ..\inc\UVTKdrv.h
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\STM324x7i_eval.h
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\STM32_EVAL\Common\stm32_eval_legacy.h

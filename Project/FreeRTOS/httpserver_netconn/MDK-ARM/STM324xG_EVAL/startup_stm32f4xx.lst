@@ -861,11 +861,11 @@ ARM Macro Assembler    Page 14
   442 0000001C                 END
               00000000 
               00000000 
-Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\stm
-324xg_eval\startup_stm32f4xx.d -o.\stm324xg_eval\startup_stm32f4xx.o -IC:\Keil_
-v5\ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\Inc\ST\STM32F4x
-x --predefine="__MICROLIB SETA 1" --list=.\stm324xg_eval\startup_stm32f4xx.lst 
-startup_stm32f4xx.s
+Command Line: --debug --xref --cpu=Cortex-M4 --apcs=interwork --depend=.\stm324
+xg_eval\startup_stm32f4xx.d -o.\stm324xg_eval\startup_stm32f4xx.o -IC:\Keil_v5\
+ARM\RV31\INC -IC:\Keil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\Inc\ST\STM32F4xx -
+-predefine="__MICROLIB SETA 1" --list=.\stm324xg_eval\startup_stm32f4xx.lst sta
+rtup_stm32f4xx.s
 
 
 
@@ -1959,4 +1959,4 @@ Symbol: __main
       At line 194 in file startup_stm32f4xx.s
 Comment: __main used once
 2 symbols
-444 symbols in table
+443 symbols in table

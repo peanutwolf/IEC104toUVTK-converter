@@ -69,7 +69,6 @@
 .\stm324xg_eval\stm32f4x7_eth_bsp.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/def.h
 .\stm324xg_eval\stm32f4x7_eth_bsp.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h
 .\stm324xg_eval\stm32f4x7_eth_bsp.o: ..\inc\UVTKdrv.h
+.\stm324xg_eval\stm32f4x7_eth_bsp.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h
 .\stm324xg_eval\stm32f4x7_eth_bsp.o: ..\inc\netconf.h
 .\stm324xg_eval\stm32f4x7_eth_bsp.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/dhcp.h
-.\stm324xg_eval\stm32f4x7_eth_bsp.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/udp.h
-.\stm324xg_eval\stm32f4x7_eth_bsp.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/ip.h

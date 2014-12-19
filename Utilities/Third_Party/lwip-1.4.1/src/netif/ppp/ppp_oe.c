@@ -77,7 +77,7 @@
 #include "ppp_impl.h"
 #include "pppdebug.h"
 
-#include "lwip/timers.h"
+#include "lwip/lwip_timers.h"
 #include "lwip/memp.h"
 
 #include <string.h>

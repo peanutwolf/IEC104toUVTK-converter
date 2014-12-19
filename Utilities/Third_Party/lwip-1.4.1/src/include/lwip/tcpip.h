@@ -41,7 +41,7 @@
 #include "lwip/pbuf.h"
 #include "lwip/api.h"
 #include "lwip/sys.h"
-#include "lwip/timers.h"
+#include "lwip/lwip_timers.h"
 #include "lwip/netif.h"
 
 #ifdef __cplusplus

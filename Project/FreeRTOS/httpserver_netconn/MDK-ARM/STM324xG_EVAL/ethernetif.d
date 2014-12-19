@@ -11,7 +11,7 @@
 .\stm324xg_eval\ethernetif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/mem.h
 .\stm324xg_eval\ethernetif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h
 .\stm324xg_eval\ethernetif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/err.h
-.\stm324xg_eval\ethernetif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/timers.h
+.\stm324xg_eval\ethernetif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/lwip_timers.h
 .\stm324xg_eval\ethernetif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/sys.h
 .\stm324xg_eval\ethernetif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\arch/sys_arch.h
 .\stm324xg_eval\ethernetif.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\FreeRTOS.h
@@ -73,6 +73,7 @@
 .\stm324xg_eval\ethernetif.o: ..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_lcd.h
 .\stm324xg_eval\ethernetif.o: ..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\../Common/fonts.h
 .\stm324xg_eval\ethernetif.o: ..\inc\UVTKdrv.h
+.\stm324xg_eval\ethernetif.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h
 .\stm324xg_eval\ethernetif.o: ..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc\stm32f4x7_eth.h
 .\stm324xg_eval\ethernetif.o: ..\inc\stm32f4x7_eth_conf.h
 .\stm324xg_eval\ethernetif.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\string.h

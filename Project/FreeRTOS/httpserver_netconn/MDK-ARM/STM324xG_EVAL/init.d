@@ -44,7 +44,6 @@
 .\stm324xg_eval\init.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/autoip.h
 .\stm324xg_eval\init.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/igmp.h
 .\stm324xg_eval\init.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/dns.h
-.\stm324xg_eval\init.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/timers.h
+.\stm324xg_eval\init.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/lwip_timers.h
 .\stm324xg_eval\init.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif/etharp.h
 .\stm324xg_eval\init.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/api.h
-.\stm324xg_eval\init.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/netbuf.h

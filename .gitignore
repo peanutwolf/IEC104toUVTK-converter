@@ -50,3 +50,5 @@ Project/FreeRTOS/httpserver_netconn/MDK-ARM/STM324xG_EVAL/api_lib.d
 *.d
 *.o
 *.crf
+*.ES
+*.ES

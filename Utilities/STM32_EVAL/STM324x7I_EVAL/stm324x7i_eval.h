@@ -311,17 +311,16 @@ typedef enum
 #define sEE_TIME_CONST                   168 
 /**
   * @}
-  */  
-/**
-  * @}
   */ 
   
-/** @defgroup STM324x7I_EVAL_LOW_LEVEL_Exported_Macros
+/** @addtogroup STM324x7I_EVAL_LOW_LEVEL_SPI_EE
   * @{
-  */  
+  */
 /**
-  * @}
-  */ 
+  * @brief  SPI defines
+  */  
+#define SPI_UVTK_DELAY 									5
+	
 
 
 /** @defgroup STM324x7I_EVAL_LOW_LEVEL_Exported_Functions
@@ -344,6 +343,7 @@ void sEE_LowLevel_DMAConfig(uint32_t pBuffer, uint32_t BufferSize, uint32_t Dire
 void InitIEC_RTC(void);
 void Init_SPI(void);
 void SPI_SendDataArray(SPI_TypeDef* SPIx, const uint8_t* data, uint8_t size);
+void Init_IWDT(void);
 /**
   * @}
   */

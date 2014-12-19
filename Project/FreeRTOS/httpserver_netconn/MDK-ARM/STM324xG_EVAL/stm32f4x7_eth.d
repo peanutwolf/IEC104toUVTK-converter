@@ -69,4 +69,5 @@
 .\stm324xg_eval\stm32f4x7_eth.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/def.h
 .\stm324xg_eval\stm32f4x7_eth.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h
 .\stm324xg_eval\stm32f4x7_eth.o: ..\inc\UVTKdrv.h
+.\stm324xg_eval\stm32f4x7_eth.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h
 .\stm324xg_eval\stm32f4x7_eth.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\string.h

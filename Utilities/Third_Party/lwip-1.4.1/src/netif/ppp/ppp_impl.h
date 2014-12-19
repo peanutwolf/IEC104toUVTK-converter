@@ -45,7 +45,7 @@
 #include "lwip/mem.h"
 #include "lwip/netif.h"
 #include "lwip/sys.h"
-#include "lwip/timers.h"
+#include "lwip/lwip_timers.h"
 
 /** Some defines for code we skip compared to the original pppd.
  *  These are just here to minimise the use of the ugly "#if 0". */

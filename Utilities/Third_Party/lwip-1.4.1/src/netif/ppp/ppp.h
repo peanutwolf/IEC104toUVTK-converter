@@ -44,7 +44,7 @@
 #include "lwip/mem.h"
 #include "lwip/netif.h"
 #include "lwip/sys.h"
-#include "lwip/timers.h"
+#include "lwip/lwip_timers.h"
 
 
 #ifndef __u_char_defined

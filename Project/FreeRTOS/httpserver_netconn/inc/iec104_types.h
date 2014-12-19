@@ -179,9 +179,9 @@ struct iec_type33 {
 	cp56time2a	time;
 }__attribute__((__packed__));
 
-/* M_ME_TD_1 - scaled measured value with time tag */
+/* M_ME_TD_1 - nomalized measured value with time tag */
 struct iec_type34 {
-	u16_t		mv;	/* scaled value */
+	u16_t		mv;	/* nomalized value */
 	u8_t		ov	:1; /* overflow/no overflow */
 	u8_t		res	:3;
 	u8_t		bl	:1; /* blocked/not blocked */

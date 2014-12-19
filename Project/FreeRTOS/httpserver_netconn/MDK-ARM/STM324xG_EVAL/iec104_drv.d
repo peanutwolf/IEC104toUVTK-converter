@@ -37,8 +37,8 @@
 .\stm324xg_eval\iec104_drv.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/icmp.h
 .\stm324xg_eval\iec104_drv.o: ..\inc\FIFO_buffer.h
 .\stm324xg_eval\iec104_drv.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdlib.h
-.\stm324xg_eval\iec104_drv.o: ..\inc\libiecasdu.h
 .\stm324xg_eval\iec104_drv.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\string.h
+.\stm324xg_eval\iec104_drv.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h
 .\stm324xg_eval\iec104_drv.o: ..\inc\iec104_types.h
 .\stm324xg_eval\iec104_drv.o: ..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 .\stm324xg_eval\iec104_drv.o: ..\..\..\..\Libraries\CMSIS\Include\core_cm4.h

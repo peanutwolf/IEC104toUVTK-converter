@@ -1,10 +1,11 @@
 /******************************************/
 /***************TODO***********************/
-/* 1. Correct parse i_frame.              */
+/* 1. Correct parse i_frame.  - OK!         */
 /* 2. Linked List to store iec_bufs - OK! */
 /* 3. Func to form correct pbufs - OK!    */
 /* 4. Make RTC functionality - OK!        															 */
 /* 5. Bug in prepare_tcp_iec_buf() - pbuf_chain() makes hard fault  -OK!      */
+/* 5. Bug if two INROGEN at the same time. Need to insert timers -OK!     */
 /******************************************/
 
 #include "IEC104_server.h"
@@ -13,10 +14,11 @@
 struct pbuf* IEC104_send_buf;
 extern fifo_t* iec_fifo_buf;
 extern volatile u8_t NS, NR;
-
+xTimerHandle INROGEN_timer = NULL;
 
 void init_IEC104_server(void){
 	iec_fifo_buf = createFifoToHeap(sizeof(struct iec_buf*), DATA_BUF_SIZE);
+	INROGEN_timer = xTimerCreate((const signed char *)"IEC104Timer", (INROGEN_TIMER_DELAY), pdTRUE, (void*)INROGEN_TIMER_ID, vUVTKTimerCallback);
 }
 
 /**************************************************
@@ -130,10 +132,10 @@ struct pbuf* generatIECansw(struct pbuf* p){
 	struct pbuf* ptr;
 	struct iec_buf* buf;
 	
-	/* Check IEC header size*/
-	if(p -> len < IEC104_HEADER_SIZE){
-			return p;
-	}
+//	/* Check IEC header size*/
+//	if(p -> len < IEC104_HEADER_SIZE){
+//			return p;
+//	}
 	printf("Processing IEC frame\n");
 	/*Allocate memory for iec104 telegramm frame*/
 	printf("Heap1:%d\n",xPortGetFreeHeapSize());
@@ -157,14 +159,12 @@ struct pbuf* generatIECansw(struct pbuf* p){
 			buf = NULL;
 		}
 		IEC104_send_buf = prepare_tcp_iec_buf(iec_fifo_buf);
-		 // if(IEC104_send_buf != NULL){
-				 while(p != NULL){
-				   ptr = p;
-				   p = ptr->next;
-				   pbuf_free(ptr);	
-			   }		     
-		    p = IEC104_send_buf;
-		//	}
+		while(p != NULL){
+			ptr = p;
+			p = ptr->next;
+			pbuf_free(ptr);	
+		}		     
+		p = IEC104_send_buf;
  return p;
 }
 

@@ -67,6 +67,7 @@
 .\stm324xg_eval\stm32f4xx_it.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/def.h
 .\stm324xg_eval\stm32f4xx_it.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h
 .\stm324xg_eval\stm32f4xx_it.o: ..\inc\UVTKdrv.h
+.\stm324xg_eval\stm32f4xx_it.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h
 .\stm324xg_eval\stm32f4xx_it.o: ..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc\stm32f4x7_eth.h
 .\stm324xg_eval\stm32f4xx_it.o: ..\inc\stm32f4x7_eth_conf.h
 .\stm324xg_eval\stm32f4xx_it.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/sys.h

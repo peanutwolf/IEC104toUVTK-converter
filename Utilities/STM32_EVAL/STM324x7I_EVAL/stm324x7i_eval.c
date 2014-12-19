@@ -82,6 +82,8 @@
 /** @defgroup STM324x7I_EVAL_LOW_LEVEL_Private_Variables
   * @{
   */ 
+extern xSemaphoreHandle xSPI_UVTK_Semaphore;	
+	
 GPIO_TypeDef* GPIO_PORT[LEDn] = {LED1_GPIO_PORT, LED2_GPIO_PORT, LED3_GPIO_PORT,
                                  LED4_GPIO_PORT};
 const uint16_t GPIO_PIN[LEDn] = {LED1_PIN, LED2_PIN, LED3_PIN,
@@ -741,7 +743,7 @@ void InitIEC_RTC(void){
   * @param  None
   * @retval None
   */ 
-//SPI_InitTypeDef SPI_InitStructure;
+
 void Init_SPI(void){
 	
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -793,14 +795,30 @@ void Init_SPI(void){
 	
 }
 
+
+/**
+  * @brief  Sends array to SPIx (to UVTK)
+	* @param  SPIx: Number of SPI device
+	* @param  data: Pointer to array to be send to UVTK
+	* @param  size: size of array
+  * @retval None
+  */ 
 void SPI_SendDataArray(SPI_TypeDef* SPIx, const uint8_t* data, uint8_t size){
 	uint8_t i = 0;
 	for(i = 0; i < size; i++){
 		while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
 				printf("sending %d\n", data[i]);
 				SPI_I2S_SendData(SPIx, data[i]);
-			  vTaskDelay(1);
+			  xSemaphoreTake(xSPI_UVTK_Semaphore, portMAX_DELAY);
+			  vTaskDelay(SPI_UVTK_DELAY);
 	}
+}
+
+void Init_IWDT(void){
+ IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
+ IWDG_SetPrescaler(IWDG_Prescaler_64);
+ IWDG_SetReload(0x0FFF);
+ IWDG_Enable();
 }
 
 /**

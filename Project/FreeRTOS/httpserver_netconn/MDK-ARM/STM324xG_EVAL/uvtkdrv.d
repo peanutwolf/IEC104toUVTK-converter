@@ -51,3 +51,4 @@
 .\stm324xg_eval\uvtkdrv.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdio.h
 .\stm324xg_eval\uvtkdrv.o: ..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\STM324x7i_eval.h
 .\stm324xg_eval\uvtkdrv.o: ..\..\..\..\Utilities\STM32_EVAL\Common\stm32_eval_legacy.h
+.\stm324xg_eval\uvtkdrv.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h

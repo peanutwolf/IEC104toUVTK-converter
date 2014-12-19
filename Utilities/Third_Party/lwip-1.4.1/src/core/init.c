@@ -54,7 +54,7 @@
 #include "lwip/autoip.h"
 #include "lwip/igmp.h"
 #include "lwip/dns.h"
-#include "lwip/timers.h"
+#include "lwip/lwip_timers.h"
 #include "netif/etharp.h"
 #include "lwip/api.h"
 

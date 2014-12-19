@@ -67,3 +67,4 @@
 .\stm324xg_eval\serial_debug.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/def.h
 .\stm324xg_eval\serial_debug.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h
 .\stm324xg_eval\serial_debug.o: ..\inc\UVTKdrv.h
+.\stm324xg_eval\serial_debug.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h

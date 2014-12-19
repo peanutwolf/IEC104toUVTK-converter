@@ -23,5 +23,3 @@
 .\stm324xg_eval\netif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/stats.h
 .\stm324xg_eval\netif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/memp.h
 .\stm324xg_eval\netif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/memp_std.h
-.\stm324xg_eval\netif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/dhcp.h
-.\stm324xg_eval\netif.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/udp.h

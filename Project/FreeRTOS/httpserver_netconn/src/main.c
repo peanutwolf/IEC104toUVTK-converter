@@ -79,7 +79,7 @@ int fputc(int ch, FILE *f) {
   * @retval None
   */
 int main(void)
- {
+{
 
   /* Configures the priority grouping: 4 bits pre-emption priority */
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
@@ -126,6 +126,9 @@ void Main_task(void * pvParameters)
 	
 	/* Initialize SPI3 */
 	Init_SPI();
+	
+	/* Initialize Independent Watchdog */
+	Init_IWDT();
 
   /* Initialize webserver demo */
 //  http_server_netconn_init();
@@ -169,6 +172,7 @@ void ToggleLed4(void * pvParameters)
   {
     /* Toggle LED2 each 250ms */
     STM_EVAL_LEDToggle(LED1);
+		IWDG_ReloadCounter();
     vTaskDelay(500);
   }
 }
@@ -180,36 +184,15 @@ void ToggleLed4(void * pvParameters)
   */
 void vButtonKeyHandler(void * pvParameters)
 {
-	uint8_t data;
   for( ;; )
   {
      xSemaphoreTake( xButtonSemaphore, portMAX_DELAY );
 			if(STM_EVAL_PBGetState(BUTTON_KEY)){
-				p = pvPortMalloc(1000);
-				printf("Heap alloc:%d\n",xPortGetFreeHeapSize());
+					UVTK_set_inv(UVTK_INV_CODE);
 			}
 		  else{
-				vPortFree(p);
-				printf("Heap free:%d\n",xPortGetFreeHeapSize());
-//					while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
-//					 // printf("sending 0x02\n");
-//						SPI_I2S_SendData(SPI3, 0x02);
-//						vTaskDelay(1);
-//				  while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
-//					  //printf("sending 0x19\n");
-//						SPI_I2S_SendData(SPI3, 0x19); 
-//					  vTaskDelay(1);
-//				  while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
-//					  //printf("sending 0x24\n");
-//						SPI_I2S_SendData(SPI3, 0x24);
-//					  vTaskDelay(1);
-//				  while(SPI_I2S_GetFlagStatus(SPI3, SPI_I2S_FLAG_BSY) == SET){};
-//					  //printf("sending 0x0C\n");
-//						SPI_I2S_SendData(SPI3, 0x0C);
-//					  vTaskDelay(1);
-//					  STM_EVAL_LEDToggle(LED1);
+				UVTK_set_inv(UVTK_INV_CODE);
 			}
-			//fifoPushElem(iec_fifo_buf, prepare_data_iframe(SPON_COT, M_SP_TB_1, 0x00, 0x01));
    }
 }
 
