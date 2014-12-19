@@ -27,15 +27,12 @@ void UVTK_init_task(){
 	vSemaphoreCreateBinary(xSPI_UVTK_Semaphore);
   xSemaphoreTake( xSPI_UVTK_Semaphore, portMAX_DELAY );	  // Take once just created semaphore
 	if(xSPI_UVTK_Mutex != NULL && xSPI_UVTK_Semaphore != NULL){
-		xTaskCreate(UVTK_poll, (int8_t *) "UVTK_poll", configMINIMAL_STACK_SIZE, NULL, UVTK_TASK_PRIO, NULL);
-		xTaskCreate(UVTK_TS_poll, (int8_t *) "UVTK_TS_poll", configMINIMAL_STACK_SIZE, NULL, UVTK_TASK_PRIO, NULL);
 		UVTK_set_inv(UVTK_INV_CODE);
 		for(i = 0; i < NUM_TIMERS; i++){
 			UVTK_timer[i].xUVTKTimer = xTimerCreate((const signed char *)"UVTKTimer", (IV_DELAY), pdTRUE, (void*)i, vUVTKTimerCallback);
 		}
-		xTimerReset(UVTK_timer[2].xUVTKTimer, 0);
-		xTimerStart(UVTK_timer[2].xUVTKTimer, 0);
-		UVTK_timer[2].timer_started = 0x01;
+		xTaskCreate(UVTK_TS_poll, (int8_t *) "UVTK_TS_poll", configMINIMAL_STACK_SIZE, NULL, UVTK_TASK_PRIO, NULL);
+		xTaskCreate(UVTK_poll, (int8_t *) "UVTK_poll", configMINIMAL_STACK_SIZE, NULL, UVTK_TASK_PRIO, NULL);		
 	}
 	else{
 		STM_EVAL_LEDOn(LED2);
@@ -141,6 +138,7 @@ void UVTK_TS_poll(void * pvParameters)
 	uint8_t n = 0;
   for( ;; )
   {
+		UVTK_set_inv(UVTK_INV_CODE);
 		for(i = 0; i < UVTK_INROGEN_QUEUE_SIZE; i++){
 			xSemaphoreTake( xSPI_UVTK_Mutex, portMAX_DELAY );
 			SPI_SendDataArray(SPI3, UVTK_inrogenData[i], UVTK_INROGEN_MSG_SIZE);
