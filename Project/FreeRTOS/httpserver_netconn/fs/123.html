@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First JavaScript</h1>
+<script type="text/javascript">
+function httpGet()
+{
+    var xmlHttp = null;
+
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "ya.ru", true);
+    xmlHttp.send();
+    return xmlHttp.responseText;
+}
+</script>
+
+
+<button type="button"onclick="httpGet()">
+Click me to display Date and Time.</button>
+
+<p id="demo"></p>
+<p><a href="http://www.ya.ru">Относительная ссылка</a></p>
+
+</body>
+</html> 
+

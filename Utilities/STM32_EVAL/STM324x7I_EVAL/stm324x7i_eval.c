@@ -768,7 +768,7 @@ void Init_SPI(void){
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_Init(GPIOA, &GPIO_InitStruct);
 	
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI3, ENABLE);
@@ -779,7 +779,7 @@ void Init_SPI(void){
 	SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low; 
 	SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;    
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft | SPI_NSSInternalSoft_Set; 
-	SPI_InitStruct.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_128; 
+	SPI_InitStruct.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_256; 
 	SPI_InitStruct.SPI_FirstBit = SPI_FirstBit_MSB;
 	SPI_Init(SPI3, &SPI_InitStruct); 
 	

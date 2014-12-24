@@ -7,7 +7,7 @@
 
 #include "libiecasdu.h"
 
-volatile u8_t NS = 0, NR = 0;
+volatile u16_t NS = 0, NR = 0;
 cp56time2a TM_cp56_time;
 fifo_t* iec_fifo_buf;
 struct iec_type30 iec_type30_tmpl = {0,0,0,0,0,0,0};
@@ -21,6 +21,7 @@ extern xTimerHandle INROGEN_timer;
 void parse_iframe(fifo_t* fifo_buf, struct iec_buf* buf){
 	volatile struct iec_unit_id* asdu_head;	
 	volatile u8_t type_id;
+	uint8_t i = 0;
 	
 	  asdu_head = (struct iec_unit_id*)buf->data;
 	   switch(asdu_head->type){
@@ -37,18 +38,19 @@ void parse_iframe(fifo_t* fifo_buf, struct iec_buf* buf){
   				  vPortFree(buf);
 					  fifoPushElem(fifo_buf, prepare_data_iframe(ACTCON_COT,  C_IC_NA_1, 0x00, 0x01));	
 						if(xTimerIsTimerActive(INROGEN_timer) == pdFALSE){
-							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x00, 0x20));	
-							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x20, 0x20));
-							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x40, 0x20));	
-							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, 0x60, 0x20));
-							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NA_1, 0x00, 0x10));
-							fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NA_1, 0x10, 0x10));	
+							for(i = 0; i < IEC104_TS_SIZE; i+=0x20){
+								fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, i, 0x20));	
+							}
+							for(i = 0; i < IEC104_TI_SIZE; i+=0x10){
+								fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NA_1, i, 0x10));
+							}
 							xTimerReset(INROGEN_timer, 0);
 							xTimerStart(INROGEN_timer, 0);
 						}
 				 }
 			   break;
 			 default:
+				 vPortFree(buf);
 				 break;
 		 }
 }

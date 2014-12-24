@@ -155,7 +155,7 @@ struct pbuf* generatIECansw(struct pbuf* p){
 			fifoPushElem(iec_fifo_buf, buf);
 		}
 		else{
-			free(buf);
+			vPortFree(buf);
 			buf = NULL;
 		}
 		IEC104_send_buf = prepare_tcp_iec_buf(iec_fifo_buf);

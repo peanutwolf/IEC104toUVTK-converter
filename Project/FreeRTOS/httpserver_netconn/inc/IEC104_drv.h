@@ -7,8 +7,8 @@
 #include "UVTKdrv.h"
 
 #define IEC104_TASK_PRIO    		( tskIDLE_PRIORITY + 2 )
-#define IEC104_TS_SIZE					128
-#define IEC104_TI_SIZE					32
+#define IEC104_TS_SIZE					UVTK_TS_GR_SIZE * UVTK_TS_GR_NUM * 8  //128
+#define IEC104_TI_SIZE					UVTK_TI_GR_SIZE * UVTK_TI_GR_NUM
 
 void IEC104_init_task(void);
 

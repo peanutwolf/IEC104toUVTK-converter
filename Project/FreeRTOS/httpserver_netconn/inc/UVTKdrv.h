@@ -9,14 +9,16 @@
 
 #define UVTK_TASK_PRIO    				( tskIDLE_PRIORITY + 2 )
 #define UVTK_INROGEN_MSG_SIZE			5
-#define UVTK_INROGEN_QUEUE_SIZE		5
-#define UVTK_TS_GR_SIZE   				8
+#define UVTK_INROGEN_QUEUE_SIZE		5 //5
+#define UVTK_TS_GR_SIZE   				8 //8
+#define UVTK_TS_GR_NUM	   				2 //2
 #define UVTK_TI_GR_SIZE   				16
+#define UVTK_TI_GR_NUM	   				2 //2
 #define UVTK_POLL_DELAY   				20000 		//20000
 #define KP_ADR										0x19
 #define UVTK_INV_CODE							0x03
 #define NUM_TIMERS 							  4
-#define IV_DELAY 							  	40000 			//40000
+#define IV_DELAY 							  	80000 			//40000
 #define INROGEN_TIMER_ID 					NUM_TIMERS + 1
 #define INROGEN_TIMER_DELAY				2000
 

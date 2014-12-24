@@ -51,7 +51,7 @@ extern xSemaphoreHandle ETH_link_xSemaphore;
 extern xSemaphoreHandle xButtonSemaphore;
 extern xSemaphoreHandle xSPI_UVTK_Semaphore;
 extern xSemaphoreHandle xSPI_UVTK_Mutex;
-extern uint8_t SPI_data;
+extern volatile uint8_t SPI_data;
 /* Private function prototypes -----------------------------------------------*/
 extern void xPortSysTickHandler(void); 
 /* Private functions ---------------------------------------------------------*/
@@ -227,6 +227,7 @@ void SPI3_IRQHandler(void)
   if (SPI_I2S_GetITStatus(SPI3, SPI_I2S_IT_RXNE) == SET) 
   {
      SPI_data = SPI_I2S_ReceiveData(SPI3);
+		 //printf("received 0x%08x\n", SPI_data);
      xSemaphoreGiveFromISR(xSPI_UVTK_Semaphore, &xHigherPriorityTaskWoken );   
   }
 

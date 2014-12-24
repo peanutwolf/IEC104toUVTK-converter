@@ -109,7 +109,7 @@ struct iec_type1 {
 	u8_t		bl	:1; /* blocked/not blocked */
 	u8_t		sb	:1; /* substituted/not substituted */
 	u8_t		nt	:1; /* not topical/topical */
-	u8_t		iv	:1; /* valid/invalid */
+	u8_t		iv 	:1; /* valid/invalid */
 } __attribute__((__packed__));
 
 /* M_BO_NA_1 - state and change information bit string */
