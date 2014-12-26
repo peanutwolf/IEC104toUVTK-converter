@@ -131,7 +131,7 @@ void Main_task(void * pvParameters)
 	Init_IWDT();
 
   /* Initialize webserver demo */
-//  http_server_netconn_init();
+  http_server_netconn_init();
 		
 	iecsock_server_init();
 	
@@ -188,10 +188,10 @@ void vButtonKeyHandler(void * pvParameters)
   {
      xSemaphoreTake( xButtonSemaphore, portMAX_DELAY );
 			if(STM_EVAL_PBGetState(BUTTON_KEY)){
-					UVTK_set_inv(UVTK_INV_CODE);
+				STM_EVAL_LEDToggle(LED4);
 			}
 		  else{
-				UVTK_set_inv(UVTK_INV_CODE);
+
 			}
    }
 }

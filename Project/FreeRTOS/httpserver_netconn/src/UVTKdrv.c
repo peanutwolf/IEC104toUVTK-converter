@@ -194,3 +194,12 @@ void vUVTKTimerCallback( xTimerHandle pxTimer ){
 	}
 }
 
+void stopUVTKTimers(){
+	uint8_t i = 0;
+	for(i = 0; i < NUM_TIMERS; i++){
+			UVTK_timer[i].is_iv = 0x00;
+			UVTK_timer[i].timer_started = 0x00;
+			xTimerStop(UVTK_timer[i].xUVTKTimer, 0);
+	}
+}
+

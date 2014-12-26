@@ -18,7 +18,7 @@
 #define KP_ADR										0x19
 #define UVTK_INV_CODE							0x03
 #define NUM_TIMERS 							  4
-#define IV_DELAY 							  	80000 			//40000
+#define IV_DELAY 							  	19000 			//40000
 #define INROGEN_TIMER_ID 					NUM_TIMERS + 1
 #define INROGEN_TIMER_DELAY				2000
 
@@ -33,6 +33,7 @@ typedef struct{
 
 void UVTK_init_task(void);
 void UVTK_set_inv(uint8_t inv);
+void stopUVTKTimers(void);
 
 void UVTK_poll(void * pvParameters);
 void UVTK_TS_poll(void * pvParameters);

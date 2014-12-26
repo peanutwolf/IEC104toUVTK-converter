@@ -13,6 +13,7 @@
 ".\stm324xg_eval\fifo_buffer.o"
 ".\stm324xg_eval\uvtkdrv.o"
 ".\stm324xg_eval\iec104_drv.o"
+".\stm324xg_eval\httpserver-netconn.o"
 ".\stm324xg_eval\api_lib.o"
 ".\stm324xg_eval\api_msg.o"
 ".\stm324xg_eval\err.o"

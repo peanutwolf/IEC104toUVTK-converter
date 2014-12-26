@@ -41,24 +41,19 @@ void IEC104_UVTK_TS_poll(void * pvParameters){
 
 	for(;;){
 		xSemaphoreTake( xIEC104_Poll_Mutex, portMAX_DELAY );
-	for(n = 0; n < UVTK_TS_GR_NUM; n++){
-		//printf("n = %d\n", n);
-		for(i = 0; i < UVTK_TS_GR_SIZE; i++){
-			//printf("i = %d\n", i);
-			UVTK_ts_grp_data_tmp = UVTK_ts_grp_data[i + UVTK_TS_GR_SIZE * n];
-			//printf("UVTK_ts_grp_data_tmp = %d\n", UVTK_ts_grp_data_tmp);
-			for(j = 0; j < 8; j++){
-				//printf("j = %d\n", j);
-				iec104_gr_num = (i*8) + j + UVTK_TS_GR_SIZE * 8 * n;	
-				uvtk_gr_ts_tmp = (UVTK_ts_grp_data_tmp>>j) & 0x01;
-				if(ts_mas[iec104_gr_num].sp.sp != uvtk_gr_ts_tmp){
-					//printf("writing spon %d, uvtk_gr_ts_tmp = %d\n", iec104_gr_num, uvtk_gr_ts_tmp);
-					ts_mas[iec104_gr_num].sp.sp = uvtk_gr_ts_tmp;
-					ts_mas[iec104_gr_num].spon = 0x01;
+		for(n = 0; n < UVTK_TS_GR_NUM; n++){
+			for(i = 0; i < UVTK_TS_GR_SIZE; i++){
+				UVTK_ts_grp_data_tmp = UVTK_ts_grp_data[i + UVTK_TS_GR_SIZE * n];
+				for(j = 0; j < 8; j++){
+					iec104_gr_num = (i*8) + j + UVTK_TS_GR_SIZE * 8 * n;	
+					uvtk_gr_ts_tmp = (UVTK_ts_grp_data_tmp>>j) & 0x01;
+					if(ts_mas[iec104_gr_num].sp.sp != uvtk_gr_ts_tmp){
+						ts_mas[iec104_gr_num].sp.sp = uvtk_gr_ts_tmp;
+						ts_mas[iec104_gr_num].spon = 0x01;
+					}
 				}
 			}
 		}
-	}
 		xSemaphoreGive(xIEC104_Poll_Mutex);
 		vTaskDelay(10);
 	}
@@ -90,7 +85,9 @@ void IEC104_TS_poll(void * pvParameters){
 					start = 0x00;
 					end = 0x00;
 				}
+				stopUVTKTimers();
 			}
+			
 		}
 		xSemaphoreGive(xIEC104_Poll_Mutex);
 		vTaskDelay(10);

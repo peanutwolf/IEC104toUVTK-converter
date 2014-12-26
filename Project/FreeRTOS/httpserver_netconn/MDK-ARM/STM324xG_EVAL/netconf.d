@@ -75,8 +75,10 @@
 .\stm324xg_eval\netconf.o: ..\inc\netconf.h
 .\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip\tcpip.h
 .\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/api_msg.h
-.\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/netifapi.h
-.\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/api.h
 .\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/sys.h
 .\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\arch/sys_arch.h
+.\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/igmp.h
+.\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/api.h
+.\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/netbuf.h
+.\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/netifapi.h
 .\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/lwip_timers.h

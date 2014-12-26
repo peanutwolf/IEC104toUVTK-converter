@@ -519,6 +519,11 @@
               <FileType>1</FileType>
               <FilePath>..\src\IEC104_drv.c</FilePath>
             </File>
+            <File>
+              <FileName>httpserver-netconn.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\httpserver-netconn.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1365,6 +1370,11 @@
               <FileName>IEC104_drv.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\IEC104_drv.c</FilePath>
+            </File>
+            <File>
+              <FileName>httpserver-netconn.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\httpserver-netconn.c</FilePath>
             </File>
           </Files>
         </Group>
