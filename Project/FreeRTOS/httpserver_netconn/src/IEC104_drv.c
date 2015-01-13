@@ -1,3 +1,11 @@
+/**
+  * @file    IEC104_drv.c
+  * @author  Vigurskiy.ES
+  * @version V0.0.1
+  * @date    05.03.2014
+  * @brief   IEC104 gateway between UVTK data array
+	 ******************************************************************************
+  */
 /******************************************/
 /***************TODO***********************/
 /* 1. make correct .iv flag set -OK!          */
@@ -151,7 +159,6 @@ void IEC104_UVTK_IV_poll(void * pvParameters){
 	for(;;){
 		xSemaphoreTake( xIEC104_Poll_Mutex, portMAX_DELAY );
 		if((UVTK_timer[0].is_iv != ts_mas[0].sp.iv) && (UVTK_TS_GR_NUM >= 1)){
-			//printf("spon iv ts1\n");	
 			for(i = 0; i < UVTK_TS_GR_SIZE * 8; i++){
 				ts_mas[i].sp.iv = UVTK_timer[0].is_iv;
 			}

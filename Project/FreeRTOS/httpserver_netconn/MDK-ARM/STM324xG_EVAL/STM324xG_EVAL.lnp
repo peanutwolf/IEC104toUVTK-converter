@@ -6,7 +6,6 @@
 ".\stm324xg_eval\stm32f4x7_eth_bsp.o"
 ".\stm324xg_eval\stm32f4xx_it.o"
 ".\stm324xg_eval\serial_debug.o"
-".\stm324xg_eval\tcp_echoclient.o"
 ".\stm324xg_eval\iec104_server.o"
 ".\stm324xg_eval\iecsock_server.o"
 ".\stm324xg_eval\libiecasdu.o"

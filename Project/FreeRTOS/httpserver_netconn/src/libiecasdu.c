@@ -1,3 +1,11 @@
+/**
+  * @file    libiecasdu.c
+  * @author  Vigurskiy.ES
+  * @version V0.0.1
+  * @date    05.03.2014
+  * @brief   IEC104 I-frames parser and composer
+	 ******************************************************************************
+  */
 /***********************************************************************/
 /***************TODO****************************************************/
 /* 1. Make timers functionality for INROGEN -OK!      								 */
@@ -169,6 +177,7 @@ void set_iec_time(cp56time2a* TM_cp56_time){
 	RTC_DateStruct.RTC_WeekDay = TM_cp56_time->wday;
 	RTC_DateStruct.RTC_Year = TM_cp56_time->year;
 	RTC_SetDate(RTC_Format_BIN, &RTC_DateStruct);
+
 }
 
 void get_iec_time(cp56time2a* TM_cp56_time){

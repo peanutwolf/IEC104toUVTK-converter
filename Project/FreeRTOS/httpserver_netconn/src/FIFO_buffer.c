@@ -1,4 +1,10 @@
-
+/**
+  * @file    FIFO_buffer.c
+  * @author  Vigurskiy.ES
+  * @version V0.0.1
+  * @date    05.03.2014
+  * @brief   
+  */
 #include "FIFO_buffer.h"
 
 fifo_t* createFifoToHeap(u8_t elemSize, u8_t size)

@@ -1,28 +1,9 @@
 /**
-  ******************************************************************************
   * @file    main.c
-  * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    31-July-2013
+  * @author  Vigurskiy.ES
+  * @version V0.0.1
+  * @date    05.03.2014
   * @brief   Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
-  *
-  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  * You may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at:
-  *
-  *        http://www.st.com/software_license_agreement_liberty_v2
-  *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  *
-  ******************************************************************************
   */
 
 /* Includes ------------------------------------------------------------------*/
@@ -36,8 +17,9 @@
 #include "tcp_echoclient.h"
 #include "iecsock_server.h"
 
-/* Private typedef -----------------------------------------------------------*/
+
 /* Private define ------------------------------------------------------------*/
+/* Defines to push debug info to STLink  -> see fputc(int ch, FILE *f)*/
 #define ITM_Port8(n)    (*((volatile unsigned char *)(0xE0000000+4*n)))
 #define ITM_Port16(n)   (*((volatile unsigned short*)(0xE0000000+4*n)))
 #define ITM_Port32(n)   (*((volatile unsigned long *)(0xE0000000+4*n)))
@@ -47,15 +29,13 @@
 
 /*--------------- Tasks Priority -------------*/
 #define MAIN_TASK_PRIO   ( tskIDLE_PRIORITY + 1 )
-#define DHCP_TASK_PRIO   ( tskIDLE_PRIORITY + 4 )
 #define LED_TASK_PRIO    ( tskIDLE_PRIORITY + 2 )
 #define BUT_TASK_PRIO    ( tskIDLE_PRIORITY + 2 )
-/* Private macro -------------------------------------------------------------*/
+
 /* Private variables ---------------------------------------------------------*/
 extern fifo_t* iec_fifo_buf;
 xSemaphoreHandle xButtonSemaphore;
 
-static uint8_t* p;
 /* Private function prototypes -----------------------------------------------*/
 void LCD_LED_Init(void);
 void ToggleLed4(void * pvParameters);
@@ -80,28 +60,19 @@ int fputc(int ch, FILE *f) {
   */
 int main(void)
 {
-
-  /* Configures the priority grouping: 4 bits pre-emption priority */
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
-  
-  /* Init task */
   xTaskCreate(Main_task,(int8_t *)"Main", configMINIMAL_STACK_SIZE * 2, NULL,MAIN_TASK_PRIO, NULL);
-
-  /* Start scheduler */
   vTaskStartScheduler();
-
-  /* We should never get here as control is now taken by the scheduler */
   for( ;; );
-
 }
 
 void vApplicationStackOverflowHook(xTaskHandle *pxTask, signed char *pcTaskName)
 {
-	signed char* name = pcTaskName;
+		signed char* name = pcTaskName;
     for(;;){};
 }
 /**
-  * @brief  Main task
+  * @brief  Main task. Initialize system modules
   * @param  pvParameters not used
   * @retval None
   */
@@ -110,12 +81,10 @@ void Main_task(void * pvParameters)
 #ifdef SERIAL_DEBUG
   DebugComPort_Init();
 #endif
-
-  /*Initialize LCD and Leds */ 
 	printf("Initializing system\n");
   LCD_LED_Init();
 
-  /* configure Ethernet (GPIOs, clocks, MAC, DMA) */ 
+  /* configure Ethernet physical layer RMII */ 
   ETH_BSP_Config();
 
   /* Initilaize the LwIP stack */
@@ -130,25 +99,25 @@ void Main_task(void * pvParameters)
 	/* Initialize Independent Watchdog */
 	Init_IWDT();
 
-  /* Initialize webserver demo */
+  /* Initialize webserver over netconn API */
+	/* TODO: Make websrv parse GET req*/
   http_server_netconn_init();
 		
+	/* Initialize TCP/IP layer for IEC_104 */	
 	iecsock_server_init();
 	
+	/* Initialize IEC_104 layer */
 	init_IEC104_server();
 
+	/* Initialize UVTK board poll over SPI3 */
 	UVTK_init_task();
-		
+	
+	/* Initialize IEC104 data poll  */
 	IEC104_init_task();
 		 
-#ifdef USE_DHCP
-  /* Start DHCPClient */
-  xTaskCreate(LwIP_DHCP_task, (int8_t *) "DHCP", configMINIMAL_STACK_SIZE * 2, NULL,DHCP_TASK_PRIO, NULL);
-#endif
 
-  /* Start toogleLed4 task : Toggle LED4  every 250ms */
+  /* Initialize LED4 toggle and UserButton handler for STM32F4Discovery*/
   xTaskCreate(ToggleLed4, (int8_t *) "LED4", configMINIMAL_STACK_SIZE, NULL, LED_TASK_PRIO, NULL);
-	
 	vSemaphoreCreateBinary(xButtonSemaphore);
   xSemaphoreTake( xButtonSemaphore, portMAX_DELAY );	  // Take once just created semaphore
 	if( xButtonSemaphore != NULL ) {
@@ -162,7 +131,7 @@ void Main_task(void * pvParameters)
 
 
 /**
-  * @brief  Toggle Led4 task
+  * @brief  Toggle Led4 task, Reload IWDG
   * @param  pvParameters not used
   * @retval None
   */
@@ -170,7 +139,6 @@ void ToggleLed4(void * pvParameters)
 {
   for( ;; )
   {
-    /* Toggle LED2 each 250ms */
     STM_EVAL_LEDToggle(LED1);
 		IWDG_ReloadCounter();
     vTaskDelay(500);
@@ -198,20 +166,17 @@ void vButtonKeyHandler(void * pvParameters)
 
 
 /**
-  * @brief  Initializes the STM324xG-EVAL's LCD and LEDs resources.
+  * @brief  Initializes the STM32F4Discovery LEDs resources.
   * @param  None
   * @retval None
   */
 void LCD_LED_Init(void)
 {
-
-  /* Initialize STM324xG-EVAL's LEDs */
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   STM_EVAL_LEDInit(LED3);
   STM_EVAL_LEDInit(LED4);
-
-STM_EVAL_PBInit(BUTTON_KEY, BUTTON_MODE_EXTI);
+	STM_EVAL_PBInit(BUTTON_KEY, BUTTON_MODE_EXTI);
 }
 
 /**
@@ -235,10 +200,6 @@ void Delay(uint32_t nCount)
   */
 void assert_failed(uint8_t* file, uint32_t line)
 {
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-
-  /* Infinite loop */
   while (1)
   {}
 }
@@ -246,5 +207,3 @@ void assert_failed(uint8_t* file, uint32_t line)
 
 #endif
 
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

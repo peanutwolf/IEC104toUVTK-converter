@@ -1,21 +1,38 @@
-/******************************************/
-/***************TODO***********************/
-/* 1. Correct parse i_frame.  - OK!         */
-/* 2. Linked List to store iec_bufs - OK! */
-/* 3. Func to form correct pbufs - OK!    */
-/* 4. Make RTC functionality - OK!        															 */
-/* 5. Bug in prepare_tcp_iec_buf() - pbuf_chain() makes hard fault  -OK!      */
-/* 5. Bug if two INROGEN at the same time. Need to insert timers -OK!     */
-/******************************************/
+/**
+  * @file    IEC104_server.c
+  * @author  Vigurskiy.ES
+  * @version V0.0.1
+  * @date    05.03.2014
+  * @brief   IEC104 pbuf parse layer
+	 ******************************************************************************
+  * @attention
+	* init_IEC104_server(void); must be called IEC104 layer work properly.
+	* Call generatIECansw(struct pbuf* p); to parse pbuf with IEC104 frame
+  *
+  ******************************************************************************
+  */
+/**********************************************************************************************/
+/*****************************************TODO*************************************************/
+/* 1. Correct parse i_frame.  - OK!         																									*/
+/* 2. Linked List to store iec_bufs - OK! 																										*/
+/* 3. Func to form correct pbufs - OK!    																										*/
+/* 4. Make RTC functionality - OK!        															 											*/
+/* 5. Bug in prepare_tcp_iec_buf() - pbuf_chain() makes hard fault  -OK!      								*/
+/* 5. Bug if two INROGEN at the same time. Need to insert timers -OK!     										*/
+/**********************************************************************************************/
 
+
+/* Includes ------------------------------------------------------------------*/
 #include "IEC104_server.h"
 #include "libiecasdu.h"
 
+/* Private variables ---------------------------------------------------------*/
 struct pbuf* IEC104_send_buf;
 extern fifo_t* iec_fifo_buf;
-extern volatile u8_t NS, NR;
+extern volatile u16_t NS, NR;
 xTimerHandle INROGEN_timer = NULL;
 
+/* Private functions ---------------------------------------------------------*/
 void init_IEC104_server(void){
 	iec_fifo_buf = createFifoToHeap(sizeof(struct iec_buf*), DATA_BUF_SIZE);
 	INROGEN_timer = xTimerCreate((const signed char *)"IEC104Timer", (INROGEN_TIMER_DELAY), pdTRUE, (void*)INROGEN_TIMER_ID, vUVTKTimerCallback);
@@ -128,14 +145,9 @@ struct iec_buf* prepare_uframe_answ(struct iec_buf* buf, enum mode_type mode, en
 
 struct pbuf* generatIECansw(struct pbuf* p){
 
-  //err_t	err;
 	struct pbuf* ptr;
 	struct iec_buf* buf;
 	
-//	/* Check IEC header size*/
-//	if(p -> len < IEC104_HEADER_SIZE){
-//			return p;
-//	}
 	printf("Processing IEC frame\n");
 	/*Allocate memory for iec104 telegramm frame*/
 	printf("Heap1:%d\n",xPortGetFreeHeapSize());

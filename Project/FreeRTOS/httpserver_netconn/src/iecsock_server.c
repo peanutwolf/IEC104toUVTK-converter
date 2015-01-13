@@ -1,4 +1,11 @@
-
+/**
+  * @file    iecsock_server.c
+  * @author  Vigurskiy.ES
+  * @version V0.0.1
+  * @date    05.03.2014
+  * @brief   Main program body
+  */
+	
 #include "lwip/debug.h"
 #include "lwip/stats.h"
 #include "lwip/tcp.h"
@@ -9,7 +16,7 @@
 #if LWIP_TCP
 
 static struct tcp_pcb *iecsock_tcp_pcb;
-extern volatile u8_t NS, NR; 
+extern volatile u16_t NS, NR; 
 extern fifo_t* iec_fifo_buf;
 /*Protocol states */
 enum tcp_iecsock_states

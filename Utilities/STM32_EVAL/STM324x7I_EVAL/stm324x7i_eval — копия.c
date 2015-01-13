@@ -82,7 +82,6 @@
 /** @defgroup STM324x7I_EVAL_LOW_LEVEL_Private_Variables
   * @{
   */ 
-	
 extern xSemaphoreHandle xSPI_UVTK_Semaphore;	
 	
 GPIO_TypeDef* GPIO_PORT[LEDn] = {LED1_GPIO_PORT, LED2_GPIO_PORT, LED3_GPIO_PORT,
@@ -148,8 +147,6 @@ NVIC_InitTypeDef   NVIC_InitStructure;
   * @{
   */ 
 
-static uint32_t CheckBackupReg(uint16_t FirstBackupData);
-static void WriteToBackupReg(uint16_t FirstBackupData);
 /**
   * @}
   */ 
@@ -727,9 +724,8 @@ void InitIEC_RTC(void){
  
     PWR_BackupAccessCmd(ENABLE);
  
-//    RCC_BackupResetCmd(ENABLE);
-//    RCC_BackupResetCmd(DISABLE);
-
+    RCC_BackupResetCmd(ENABLE);
+    RCC_BackupResetCmd(DISABLE);
 
     RCC_RTCCLKConfig(RCC_RTCCLKSource_HSE_Div8);
     RCC_RTCCLKCmd(ENABLE);
@@ -740,8 +736,6 @@ void InitIEC_RTC(void){
 	  
     RTC_Init(&rtc_def);
 }
-
-
 
 /**
   * @brief  Initializes SPI to send data to UVTK

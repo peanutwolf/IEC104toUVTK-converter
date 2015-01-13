@@ -10,7 +10,7 @@
 #define UVTK_TASK_PRIO    				( tskIDLE_PRIORITY + 2 )
 #define UVTK_INROGEN_MSG_SIZE			5
 #define UVTK_INROGEN_QUEUE_SIZE		5 //5
-#define UVTK_TS_GR_SIZE   				8 //8
+#define UVTK_TS_GR_SIZE   				8 //8 byte
 #define UVTK_TS_GR_NUM	   				2 //2
 #define UVTK_TI_GR_SIZE   				16
 #define UVTK_TI_GR_NUM	   				2 //2
