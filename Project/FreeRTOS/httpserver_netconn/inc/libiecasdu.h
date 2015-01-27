@@ -2,15 +2,16 @@
 #define __LIBIECASDU_H
 
 #define DATA_BUF_SIZE 20
-#define SP_IOA_OFFSET 0x65
-#define MV_IOA_OFFSET 0x3E9
-#define SP_TOTAL 10
-#define MV_TOTAL 10
+#define IEC_SP_IOA_OFFSET 					*(uint16_t*)(SETTINGS_ADDRESS + IEC_SP_IOA_OFFSET_ADDR)
+#define IEC_MV_IOA_OFFSET 					*(uint16_t*)(SETTINGS_ADDRESS + IEC_MV_IOA_OFFSET_ADDR)
+#define IEC_ASDU_ADDR								*(uint16_t*)(SETTINGS_ADDRESS + IEC_ASDU_ADDR_ADDR)
+
 
 #include "IEC104_server.h"
 #include "iec104_types.h"
 #include "FIFO_buffer.h"
 #include "IEC104_drv.h"
+#include "main.h"
 
 
 void parse_iframe(fifo_t* fifo_buf, struct iec_buf *buf);

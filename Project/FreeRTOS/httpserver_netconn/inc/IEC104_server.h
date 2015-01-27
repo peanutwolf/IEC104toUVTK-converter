@@ -13,6 +13,7 @@
 
 #define IEC104_HEADER_SIZE 		6
 #define CHAIN_NUM_PBUFS 			2
+#define IEC_SOCK_PORT 				2405
 
 
 enum mode_type{

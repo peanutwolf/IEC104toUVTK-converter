@@ -48,21 +48,13 @@
 for debug purpose */   
 //#define SERIAL_DEBUG 
 
-
- #define DEST_IP_ADDR0   192
-#define DEST_IP_ADDR1   168
-#define DEST_IP_ADDR2   0
-#define DEST_IP_ADDR3   200
-
-#define DEST_PORT       7
-
 /* MAC ADDRESS*/
-#define MAC_ADDR0   02
-#define MAC_ADDR1   00
-#define MAC_ADDR2   00
-#define MAC_ADDR3   00
-#define MAC_ADDR4   00
-#define MAC_ADDR5   00
+#define MAC_ADDR0   0x02
+#define MAC_ADDR1   0x74
+#define MAC_ADDR2   0xEE
+#define MAC_ADDR3   0x5A
+#define MAC_ADDR4   0x39
+#define MAC_ADDR5   0x9F
  
 /*Static IP ADDRESS*/
 #define IP_ADDR0   192
@@ -81,6 +73,36 @@ for debug purpose */
 #define GW_ADDR1   168
 #define GW_ADDR2   150
 #define GW_ADDR3   1  
+
+
+/*Addresses of startup data to be read and stored*/
+#define SETTINGS_ADDRESS 						0x08040000
+#define DEVICE_SECTOR 							FLASH_Sector_6
+
+
+#define IP_ADDR0_ADDR   						2
+#define IP_ADDR1_ADDR   						3
+#define IP_ADDR2_ADDR   						4
+#define IP_ADDR3_ADDR   						5
+#define NETMASK_ADDR0_ADDR   				6
+#define NETMASK_ADDR1_ADDR   				7
+#define NETMASK_ADDR2_ADDR   				8
+#define NETMASK_ADDR3_ADDR   				9
+#define GW_ADDR0_ADDR   						10
+#define GW_ADDR1_ADDR   						11
+#define GW_ADDR2_ADDR   						12
+#define GW_ADDR3_ADDR   						13
+#define	UVTK_KP_ADR_ADDR   					14
+#define	UVTK_TS_GR_SIZE_ADDR   			15
+#define	UVTK_TS_GR_NUM_ADDR   			16			
+#define UVTK_TI_GR_SIZE_ADDR   			17			
+#define	UVTK_TI_GR_NUM_ADDR   			18			
+#define	UVTK_POLL_DELAY_ADDR   			19			
+#define UVTK_INV_CODE_ADDR   				20		
+#define IEC_ASDU_ADDR_ADDR					22
+#define IEC_SOCK_PORT_ADDR					24	
+#define IEC_SP_IOA_OFFSET_ADDR			26
+#define IEC_MV_IOA_OFFSET_ADDR			28
 
 /* MII and RMII mode selection, for STM324xG-EVAL Board(MB786) RevB ***********/
 #define RMII_MODE  // User have to provide the 50 MHz clock by soldering a 50 MHz
@@ -114,6 +136,7 @@ for debug purpose */
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */  
 void Delay(uint32_t nCount);
+void Vars_Init(void);
 
 #ifdef __cplusplus
 }

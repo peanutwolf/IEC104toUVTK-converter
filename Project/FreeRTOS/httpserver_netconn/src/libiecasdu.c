@@ -12,7 +12,6 @@
 /* 2. Make defines for INROGEN         												 			   */
 /***********************************************************************/
 
-
 #include "libiecasdu.h"
 
 volatile u16_t NS = 0, NR = 0;
@@ -21,8 +20,8 @@ fifo_t* iec_fifo_buf;
 struct iec_type30 iec_type30_tmpl = {0,0,0,0,0,0,0};
 struct iec_type34 iec_type34_tmpl = {0,0,0,0,0,0,0};
 
-extern struct iec_type1_data ts_mas[IEC104_TS_SIZE];
-extern struct iec_type9_data ti_mas[IEC104_TI_SIZE];
+extern struct iec_type1_data* ts_mas;
+extern struct iec_type9_data* ti_mas;
 extern xTimerHandle INROGEN_timer;
 
 
@@ -50,6 +49,7 @@ void parse_iframe(fifo_t* fifo_buf, struct iec_buf* buf){
 								fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, i, 0x20));	
 							}
 							for(i = 0; i < IEC104_TI_SIZE; i+=0x10){
+								printf("IEC104_TI_SIZE%d \n", IEC104_TI_SIZE);
 								fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NA_1, i, 0x10));
 							}
 							xTimerReset(INROGEN_timer, 0);
@@ -74,20 +74,20 @@ struct iec_buf* prepare_data_iframe(u8_t COT, u8_t type, u16_t inner_adr, u8_t n
 	
 	if(type == M_SP_NA_1){
 	   sizeof_obj = sizeof(struct iec_type1) + 3;
-		 ioa = inner_adr + SP_IOA_OFFSET;
+		 ioa = inner_adr + IEC_SP_IOA_OFFSET;
 	}
 	else if(type == M_ME_NA_1){
 	   sizeof_obj = sizeof(struct iec_type9) + 3;
-		 ioa = inner_adr + MV_IOA_OFFSET;
+		 ioa = inner_adr + IEC_MV_IOA_OFFSET;
 	}
 	else if(type == M_SP_TB_1){
 	   sizeof_obj = sizeof(struct iec_type30) + 2;
-		 ioa = inner_adr + SP_IOA_OFFSET;
+		 ioa = inner_adr + IEC_SP_IOA_OFFSET;
 		 get_iec_time(&TM_cp56_time);
 	}
 	else if(type == M_ME_TD_1){
 	   sizeof_obj = sizeof(struct iec_type34) + 2;
-		 ioa = inner_adr + MV_IOA_OFFSET;
+		 ioa = inner_adr + IEC_MV_IOA_OFFSET;
 		 get_iec_time(&TM_cp56_time);
 	}
 	else if(type == C_IC_NA_1 || type == C_CS_NA_1){
@@ -113,10 +113,10 @@ struct iec_buf* prepare_data_iframe(u8_t COT, u8_t type, u16_t inner_adr, u8_t n
 	asdu_head->t = 0;
 	asdu_head->pn = 0;
 	asdu_head->oa = 0;
-	asdu_head->ca = 0x15;
+	asdu_head->ca = IEC_ASDU_ADDR;
 	
-	objs_pnt = (u8_t*)(++asdu_head);  //!!!be careful asdu_head doesnt point to asdu_head anymore!!!
-
+	objs_pnt = (u8_t*)(++asdu_head);  //!!!be careful, asdu_head doesnt point to asdu_head anymore!!!
+	
 	for(i = 0; i < num; i++){
 		*objs_pnt = ioa;
 		*(++objs_pnt) = ioa>>8;	

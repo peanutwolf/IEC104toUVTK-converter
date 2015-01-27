@@ -82,6 +82,9 @@ void Main_task(void * pvParameters)
   DebugComPort_Init();
 #endif
 	printf("Initializing system\n");
+	
+	Vars_Init();
+	
   LCD_LED_Init();
 
   /* configure Ethernet physical layer RMII */ 
@@ -145,6 +148,12 @@ void ToggleLed4(void * pvParameters)
   }
 }
 
+void Vars_Init(void){
+		if(*(uint8_t*)SETTINGS_ADDRESS != 0xFE){
+				Reset_Device_Default();
+		}
+}
+
 /**
   * @brief  Button Pressed Semaphore Task
   * @param  pvParameters not used
@@ -155,12 +164,11 @@ void vButtonKeyHandler(void * pvParameters)
   for( ;; )
   {
      xSemaphoreTake( xButtonSemaphore, portMAX_DELAY );
-			if(STM_EVAL_PBGetState(BUTTON_KEY)){
+		 vTaskDelay(50);
+		 if(STM_EVAL_PBGetState(BUTTON_KEY)){
+				Reset_Device_Default();
 				STM_EVAL_LEDToggle(LED4);
-			}
-		  else{
-
-			}
+		 }
    }
 }
 

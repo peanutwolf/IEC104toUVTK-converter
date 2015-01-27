@@ -200,7 +200,6 @@ void ETH_IRQHandler(void)
   */
 void SPI3_IRQHandler(void)
 {
-	uint8_t data;
   portBASE_TYPE xHigherPriorityTaskWoken = pdFALSE;
 	
   if (SPI_I2S_GetITStatus(SPI3, SPI_I2S_IT_RXNE) == SET) 

@@ -16,27 +16,32 @@
 
 #include "IEC104_drv.h"
 
-extern uint8_t UVTK_ts_grp_data[UVTK_TS_GR_SIZE*UVTK_TS_GR_NUM];
-extern uint16_t UVTK_ti_grp_data[UVTK_TI_GR_SIZE*UVTK_TI_GR_NUM];
+extern uint8_t* UVTK_ts_grp_data;
+extern uint16_t* UVTK_ti_grp_data;
 
 
 extern fifo_t* iec_fifo_buf;
 
 extern UVTKState UVTK_timer[NUM_TIMERS];
 
-struct iec_type1_data  ts_mas[IEC104_TS_SIZE] = {[0 ... IEC104_TS_SIZE-1] = {{0,0,0,0,0,1},0}};
-struct iec_type9_data  ti_mas[IEC104_TI_SIZE] = {[0 ... IEC104_TI_SIZE-1] = {{0,0,0,0,0,0,1},0}};
+struct iec_type1_data*  ts_mas = NULL;
+//struct iec_type1_data  ts_mas[IEC104_TS_SIZE] = {[0 ... IEC104_TS_SIZE-1] = {{0,0,0,0,0,1},0}};
+struct iec_type9_data* ti_mas = NULL;
+//struct iec_type9_data  ti_mas[IEC104_TI_SIZE] = {[0 ... IEC104_TI_SIZE-1] = {{0,0,0,0,0,0,1},0}};
 
 xSemaphoreHandle xIEC104_Poll_Mutex = NULL;
 
 
 void IEC104_init_task(){
+	//ti_mas = (struct iec_type9_data*)pvPortMalloc(sizeof(struct iec_type9_data) * IEC104_TI_SIZE);
+	form_IEC_ts_data_mas();
+	form_IEC_ti_data_mas();
 	xIEC104_Poll_Mutex = xSemaphoreCreateMutex();
 	xTaskCreate(IEC104_UVTK_TS_poll, (int8_t *) "IEC104_UVTK_TS_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
 	xTaskCreate(IEC104_TS_poll, (int8_t *) "IEC104_TS_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
-	xTaskCreate(IEC104_UVTK_TI_poll, (int8_t *) "IEC104_UVTK_TI_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
-	xTaskCreate(IEC104_TI_poll, (int8_t *) "IEC104_TI_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
-	xTaskCreate(IEC104_UVTK_IV_poll, (int8_t *) "IEC104_UVTK_IV_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
+	//xTaskCreate(IEC104_UVTK_TI_poll, (int8_t *) "IEC104_UVTK_TI_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
+	//xTaskCreate(IEC104_TI_poll, (int8_t *) "IEC104_TI_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
+	xTaskCreate(IEC104_UVTK_IV_poll, (int8_t *) "IEC104_UVTK_IV_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL); 
 }
 
 void IEC104_UVTK_TS_poll(void * pvParameters){
@@ -192,4 +197,22 @@ void IEC104_UVTK_IV_poll(void * pvParameters){
 		xSemaphoreGive(xIEC104_Poll_Mutex);
 		vTaskDelay(100);
   }
+}
+
+
+void form_IEC_ts_data_mas(void){
+	uint8_t i = 0;
+		ts_mas = (struct iec_type1_data*)pvPortMalloc(sizeof(struct iec_type1_data) * IEC104_TS_SIZE);
+		for(i = 0; i < IEC104_TS_SIZE; i++){
+				ts_mas[i].sp.iv = 0x01;
+		}
+}
+
+void form_IEC_ti_data_mas(void){
+	uint8_t i = 0;
+		printf("sizeof(struct iec_type9_data) * IEC104_TI_SIZE %d\n",sizeof(struct iec_type9_data) * IEC104_TI_SIZE);
+		ti_mas = (struct iec_type9_data*)pvPortMalloc(sizeof(struct iec_type9_data) * IEC104_TI_SIZE);
+		for(i = 0; i < IEC104_TI_SIZE; i++){
+				ti_mas[i].mv.iv = 0x01;
+		}
 }

@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+
+    Field1: <input type="text" id="field1" value="Hello World!"><br>
+
+    <button onclick="myFunction()">Copy Text</button>
+
+    <p>A function is triggered when the button is clicked. The function copies the text from Field1 into Field2.</p>
+
+    <script>
+        function myFunction() {
+            var xhr = new XMLHttpRequest();
+            var params = 'a=5';
+            document.getElementById("field1").value = document.getElementById("field1").value + 1;
+            xhr.open("POST", 'http://192.168.150.21');
+            xhr.send(params);
+            xhr.onreadystatechange = function () {
+                document.getElementById("field1").value = '123';
+                if (xhr.readyState == xhr.DONE) {
+                    document.getElementById("field1").value = '321';
+                }
+            }
+
+        }
+    </script>
+
+</body>
+</html>

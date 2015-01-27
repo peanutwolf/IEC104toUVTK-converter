@@ -72,6 +72,7 @@
 .\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\../Common/fonts.h
 .\stm324xg_eval\netconf.o: ..\inc\UVTKdrv.h
 .\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h
+.\stm324xg_eval\netconf.o: ..\inc\main.h
 .\stm324xg_eval\netconf.o: ..\inc\netconf.h
 .\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip\tcpip.h
 .\stm324xg_eval\netconf.o: ..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/api_msg.h

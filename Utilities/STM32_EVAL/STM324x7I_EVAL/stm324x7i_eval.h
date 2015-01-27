@@ -344,6 +344,7 @@ void InitIEC_RTC(void);
 void Init_SPI(void);
 void SPI_SendDataArray(SPI_TypeDef* SPIx, const uint8_t* data, uint8_t size);
 void Init_IWDT(void);
+void Reset_Device_Default(void);
 /**
   * @}
   */

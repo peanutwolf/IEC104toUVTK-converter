@@ -1,40 +1,13 @@
-/**
-  ******************************************************************************
-  * @file    STM324x7i_eval.c
-  * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    11-January-2013
-  * @brief   This file provides
-  *            - set of firmware functions to manage Leds, push-button and COM ports
-  *            - low level initialization functions for SD card (on SDIO) and
-  *              serial EEPROM (sEE)
-  *          available on STM324x7I-EVAL evaluation board(MB786) from
-  *          STMicroelectronics.
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
-  *
-  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
-  * You may not use this file except in compliance with the License.
-  * You may obtain a copy of the License at:
-  *
-  *        http://www.st.com/software_license_agreement_liberty_v2
-  *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
-  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  * See the License for the specific language governing permissions and
-  * limitations under the License.
-  *
-  ******************************************************************************
-  */ 
   
 /* Includes ------------------------------------------------------------------*/
 #include "STM324x7i_eval.h"
 #include "stm32f4xx_sdio.h"
 #include "stm32f4xx_dma.h"
 #include "stm32f4xx_i2c.h"
+#include "main.h"
+#include "UVTKdrv.h"
+#include "libiecasdu.h"
+#include "IEC104_server.h"
 
 /** @addtogroup Utilities
   * @{
@@ -148,8 +121,6 @@ NVIC_InitTypeDef   NVIC_InitStructure;
   * @{
   */ 
 
-static uint32_t CheckBackupReg(uint16_t FirstBackupData);
-static void WriteToBackupReg(uint16_t FirstBackupData);
 /**
   * @}
   */ 
@@ -278,7 +249,7 @@ void STM_EVAL_PBInit(Button_TypeDef Button, ButtonMode_TypeDef Button_Mode)
 
     if(Button != BUTTON_WAKEUP)
     {
-      EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;  
+      EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
     }
     else
     {
@@ -727,10 +698,6 @@ void InitIEC_RTC(void){
  
     PWR_BackupAccessCmd(ENABLE);
  
-//    RCC_BackupResetCmd(ENABLE);
-//    RCC_BackupResetCmd(DISABLE);
-
-
     RCC_RTCCLKConfig(RCC_RTCCLKSource_HSE_Div8);
     RCC_RTCCLKCmd(ENABLE);
 	 
@@ -800,6 +767,20 @@ void Init_SPI(void){
 	
 }
 
+/**
+  * @brief  Initializes Independent Watchdog for 2 second.
+	*					It's reset in 'void ToggleLed4(void * pvParameters)' function.
+  *					TODO: Make more robust IWDT Reset.
+  * @param  None
+  * @retval None
+  */ 
+void Init_IWDT(void){
+ IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
+ IWDG_SetPrescaler(IWDG_Prescaler_64);
+ IWDG_SetReload(0x0FFF);
+ IWDG_Enable();
+}
+
 
 /**
   * @brief  Sends array to SPIx (to UVTK)
@@ -819,12 +800,56 @@ void SPI_SendDataArray(SPI_TypeDef* SPIx, const uint8_t* data, uint8_t size){
 	}
 }
 
-void Init_IWDT(void){
- IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
- IWDG_SetPrescaler(IWDG_Prescaler_64);
- IWDG_SetReload(0x0FFF);
- IWDG_Enable();
+
+/**
+	* @brief  Writes to FLASH_Sector_6 default board init variables	
+	* defined in several include files.
+	* Second and second to last bytes are number of variables.
+	* @param  none
+  * @retval None
+  */ 
+void Reset_Device_Default(void){
+	uint8_t i = 0;
+
+	FLASH_Unlock();
+	FLASH_EraseSector(FLASH_Sector_6, VoltageRange_3);
+	
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 0xFE);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 0xFF);  // Number of bytes to be written(scroll a bit down!!!)
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 192);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 168);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 150);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 21);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 255);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 255);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 255);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 0);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 192);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 168);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 150);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 1);
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 1); 		//UVTK_KP_ADR
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 4); 		//UVTK_TS_GR_SIZE
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 1); 		//UVTK_TS_GR_NUM
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 16); 		//UVTK_TI_GR_SIZE
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 1); 		//UVTK_TI_GR_NUM
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 20);	 	//UVTK_POLL_DELAY
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 0x03); 	//UVTK_INV_CODE
+	i++;
+	FLASH_ProgramHalfWord(SETTINGS_ADDRESS+i++, 21); //IEC_ASDU_ADDR
+	i++;
+	FLASH_ProgramHalfWord(SETTINGS_ADDRESS+i++, 2404); //IEC_SOCK_PORT
+	i++;
+	FLASH_ProgramHalfWord(SETTINGS_ADDRESS+i++, 0x65); //IEC_SP_IOA_OFFSET
+	i++;
+	FLASH_ProgramHalfWord(SETTINGS_ADDRESS+i++, 0x3E9); //IEC_MV_IOA_OFFSET
+	FLASH_ProgramByte(SETTINGS_ADDRESS+1, i);	// Number of bytes written, stored in second byte
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i, i++); // Number of bytes written, stored in second to last byte
+	FLASH_ProgramByte(SETTINGS_ADDRESS+(++i), 0xFE);
+	
+	FLASH_Lock();
 }
+
 
 /**
   * @}

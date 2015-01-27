@@ -11,8 +11,6 @@
 #include "lwip/tcp.h"
 #include "IEC104_server.h"
 
-#define IECSOCK_PORT 2405
-
 #if LWIP_TCP
 
 static struct tcp_pcb *iecsock_tcp_pcb;
@@ -61,7 +59,7 @@ void iecsock_server_init(void)
     err_t err;
     
     /* bind echo_pcb to port IECSOCK_PORT */
-    err = tcp_bind(iecsock_tcp_pcb, IP_ADDR_ANY, IECSOCK_PORT);
+    err = tcp_bind(iecsock_tcp_pcb, IP_ADDR_ANY, IEC_SOCK_PORT);
     
     if (err == ERR_OK)
     {

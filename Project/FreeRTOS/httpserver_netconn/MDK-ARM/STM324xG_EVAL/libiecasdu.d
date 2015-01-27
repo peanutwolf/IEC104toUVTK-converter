@@ -78,3 +78,8 @@
 .\stm324xg_eval\libiecasdu.o: ..\inc\UVTKdrv.h
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\STM324x7i_eval.h
 .\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\STM32_EVAL\Common\stm32_eval_legacy.h
+.\stm324xg_eval\libiecasdu.o: ..\inc\main.h
+.\stm324xg_eval\libiecasdu.o: ..\inc\stm32f4x7_eth_bsp.h
+.\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_lcd.h
+.\stm324xg_eval\libiecasdu.o: ..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\../Common/fonts.h
+.\stm324xg_eval\libiecasdu.o: ..\inc\UVTKdrv.h
