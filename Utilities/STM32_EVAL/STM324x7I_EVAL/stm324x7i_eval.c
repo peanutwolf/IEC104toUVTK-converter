@@ -831,7 +831,7 @@ void Reset_Device_Default(void){
 	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 1); 		//UVTK_KP_ADR
 	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 4); 		//UVTK_TS_GR_SIZE
 	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 1); 		//UVTK_TS_GR_NUM
-	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 16); 		//UVTK_TI_GR_SIZE
+	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 16); 		//UVTK_TI_GR_SIZE:Must be 16
 	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 1); 		//UVTK_TI_GR_NUM
 	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 20);	 	//UVTK_POLL_DELAY
 	FLASH_ProgramByte(SETTINGS_ADDRESS+i++, 0x03); 	//UVTK_INV_CODE

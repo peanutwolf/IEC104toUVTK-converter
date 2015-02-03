@@ -103,7 +103,7 @@ I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/err.h)(0x51F8A5
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/ip_addr.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/def.h)(0x51F8A54E)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h)(0x51F8A54E)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h)(0x548FEC38)
 I (..\inc\netconf.h)(0x51F8A678)
 I (..\inc\libiecasdu.h)(0x54C75E15)
@@ -203,7 +203,7 @@ I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\queue.h)(0x51F8A548)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\semphr.h)(0x51F8A548)
 I (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_lcd.h)(0x51F8A544)
 I (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\../Common/fonts.h)(0x51F8A544)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h)(0x548FEC38)
 I (..\inc\netconf.h)(0x51F8A678)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip\tcpip.h)(0x549D2724)
@@ -282,7 +282,7 @@ I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/err.h)(0x51F8A5
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/ip_addr.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/def.h)(0x51F8A54E)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h)(0x51F8A54E)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h)(0x548FEC38)
 I (..\inc\netconf.h)(0x51F8A678)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/dhcp.h)(0x51F8A54E)
@@ -352,7 +352,7 @@ I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/err.h)(0x51F8A5
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/ip_addr.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/def.h)(0x51F8A54E)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h)(0x51F8A54E)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h)(0x548FEC38)
 I (..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc\stm32f4x7_eth.h)(0x51F8B0DA)
 I (..\inc\stm32f4x7_eth_conf.h)(0x51F8A678)
@@ -424,7 +424,7 @@ I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/err.h)(0x51F8A5
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/ip_addr.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/def.h)(0x51F8A54E)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h)(0x51F8A54E)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h)(0x548FEC38)
 F (..\src\IEC104_server.c)(0x54B52408)(-c --cpu Cortex-M4 -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I..\inc -I..\..\..\..\Libraries\CMSIS\Include -I..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc -I..\..\..\..\Utilities\STM32_EVAL\Common -I..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3 -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include -I..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL --gnu-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DUSE_STM324x7I_EVAL -o .\stm324xg_eval\iec104_server.o --omf_browse .\stm324xg_eval\iec104_server.crf --depend .\stm324xg_eval\iec104_server.d)
 I (..\inc\IEC104_server.h)(0x54C73383)
@@ -500,7 +500,7 @@ I (..\inc\IEC104_drv.h)(0x54C77844)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS\sys_arch.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\queue.h)(0x51F8A548)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\semphr.h)(0x51F8A548)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 I (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\STM324x7i_eval.h)(0x54C72F3F)
 I (..\..\..\..\Utilities\STM32_EVAL\Common\stm32_eval_legacy.h)(0x51F8A544)
 I (..\inc\main.h)(0x54C789F1)
@@ -542,7 +542,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x51C7EF84)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h)(0x548FEC38)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\list.h)(0x51F8A548)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\task.h)(0x53ECFAF7)
-F (..\src\libiecasdu.c)(0x54C79917)(-c --cpu Cortex-M4 -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I..\inc -I..\..\..\..\Libraries\CMSIS\Include -I..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc -I..\..\..\..\Utilities\STM32_EVAL\Common -I..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3 -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include -I..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL --gnu-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DUSE_STM324x7I_EVAL -o .\stm324xg_eval\libiecasdu.o --omf_browse .\stm324xg_eval\libiecasdu.crf --depend .\stm324xg_eval\libiecasdu.d)
+F (..\src\libiecasdu.c)(0x54CA55A7)(-c --cpu Cortex-M4 -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I..\inc -I..\..\..\..\Libraries\CMSIS\Include -I..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc -I..\..\..\..\Utilities\STM32_EVAL\Common -I..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3 -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include -I..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL --gnu-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DUSE_STM324x7I_EVAL -o .\stm324xg_eval\libiecasdu.o --omf_browse .\stm324xg_eval\libiecasdu.crf --depend .\stm324xg_eval\libiecasdu.d)
 I (..\inc\libiecasdu.h)(0x54C75E15)
 I (..\inc\IEC104_server.h)(0x54C73383)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/debug.h)(0x51F8A54E)
@@ -616,7 +616,7 @@ I (..\inc\IEC104_drv.h)(0x54C77844)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS\sys_arch.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\queue.h)(0x51F8A548)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\semphr.h)(0x51F8A548)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 I (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\STM324x7i_eval.h)(0x54C72F3F)
 I (..\..\..\..\Utilities\STM32_EVAL\Common\stm32_eval_legacy.h)(0x51F8A544)
 I (..\inc\main.h)(0x54C789F1)
@@ -636,8 +636,8 @@ I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\portable.h)(0x51F8A5
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3\portmacro.h)(0x51F8A548)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\mpu_wrappers.h)(0x51F8A548)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x51C7EF84)
-F (..\src\UVTKdrv.c)(0x54C79493)(-c --cpu Cortex-M4 -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I..\inc -I..\..\..\..\Libraries\CMSIS\Include -I..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc -I..\..\..\..\Utilities\STM32_EVAL\Common -I..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3 -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include -I..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL --gnu-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DUSE_STM324x7I_EVAL -o .\stm324xg_eval\uvtkdrv.o --omf_browse .\stm324xg_eval\uvtkdrv.crf --depend .\stm324xg_eval\uvtkdrv.d)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+F (..\src\UVTKdrv.c)(0x54D09501)(-c --cpu Cortex-M4 -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I..\inc -I..\..\..\..\Libraries\CMSIS\Include -I..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc -I..\..\..\..\Utilities\STM32_EVAL\Common -I..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3 -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include -I..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL --gnu-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DUSE_STM324x7I_EVAL -o .\stm324xg_eval\uvtkdrv.o --omf_browse .\stm324xg_eval\uvtkdrv.crf --depend .\stm324xg_eval\uvtkdrv.d)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS\sys_arch.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\FreeRTOS.h)(0x51F8A548)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x51C7EF84)
@@ -703,7 +703,7 @@ I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/err.h)(0x51F8A5
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/ip_addr.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/def.h)(0x51F8A54E)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h)(0x51F8A54E)
-F (..\src\IEC104_drv.c)(0x54C79842)(-c --cpu Cortex-M4 -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I..\inc -I..\..\..\..\Libraries\CMSIS\Include -I..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc -I..\..\..\..\Utilities\STM32_EVAL\Common -I..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3 -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include -I..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL --gnu-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DUSE_STM324x7I_EVAL -o .\stm324xg_eval\iec104_drv.o --omf_browse .\stm324xg_eval\iec104_drv.crf --depend .\stm324xg_eval\iec104_drv.d)
+F (..\src\IEC104_drv.c)(0x54D0951E)(-c --cpu Cortex-M4 -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I..\inc -I..\..\..\..\Libraries\CMSIS\Include -I..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc -I..\..\..\..\Utilities\STM32_EVAL\Common -I..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3 -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include -I..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL --gnu-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DUSE_STM324x7I_EVAL -o .\stm324xg_eval\iec104_drv.o --omf_browse .\stm324xg_eval\iec104_drv.crf --depend .\stm324xg_eval\iec104_drv.d)
 I (..\inc\IEC104_drv.h)(0x54C77844)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS\sys_arch.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\FreeRTOS.h)(0x51F8A548)
@@ -783,7 +783,7 @@ I (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.h)(0x54C72F3F)
 I (..\..\..\..\Utilities\STM32_EVAL\Common\stm32_eval_legacy.h)(0x51F8A544)
 I (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_lcd.h)(0x51F8A544)
 I (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\../Common/fonts.h)(0x51F8A544)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 F (..\src\httpserver-netconn.c)(0x54C645B9)(-c --cpu Cortex-M4 -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I..\inc -I..\..\..\..\Libraries\CMSIS\Include -I..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc -I..\..\..\..\Utilities\STM32_EVAL\Common -I..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3 -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include -I..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL --gnu-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DUSE_STM324x7I_EVAL -o .\stm324xg_eval\httpserver-netconn.o --omf_browse .\stm324xg_eval\httpserver-netconn.crf --depend .\stm324xg_eval\httpserver-netconn.d)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/opt.h)(0x548A8AB2)
 I (..\inc\lwipopts.h)(0x54B3C6BF)
@@ -1639,7 +1639,7 @@ I (..\..\..\..\Utilities\STM32_EVAL\Common\stm32_eval_legacy.h)(0x51F8A544)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS\sys_arch.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_lcd.h)(0x51F8A544)
 I (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\../Common/fonts.h)(0x51F8A544)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h)(0x548FEC38)
 I (..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc\stm32f4x7_eth.h)(0x51F8B0DA)
 I (..\inc\stm32f4x7_eth_conf.h)(0x51F8A678)
@@ -2354,10 +2354,10 @@ I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/err.h)(0x51F8A5
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/ip_addr.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/def.h)(0x51F8A54E)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h)(0x51F8A54E)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h)(0x548FEC38)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x51C7EF84)
-F (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c)(0x54C79B62)(-c --cpu Cortex-M4 -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I..\inc -I..\..\..\..\Libraries\CMSIS\Include -I..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc -I..\..\..\..\Utilities\STM32_EVAL\Common -I..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3 -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include -I..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL --gnu-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DUSE_STM324x7I_EVAL -o .\stm324xg_eval\stm324x7i_eval.o --omf_browse .\stm324xg_eval\stm324x7i_eval.crf --depend .\stm324xg_eval\stm324x7i_eval.d)
+F (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c)(0x54D09284)(-c --cpu Cortex-M4 -D__MICROLIB -g -O1 --apcs=interwork --split_sections -I..\inc -I..\..\..\..\Libraries\CMSIS\Include -I..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\..\Libraries\STM32F4x7_ETH_Driver\inc -I..\..\..\..\Utilities\STM32_EVAL\Common -I..\..\..\..\Utilities\STM32_EVAL\STM3240_41_G_EVAL -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\netif -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7 -I..\..\..\..\Utilities\Third_Party\lwip-1.4.1\port\STM32F4x7\FreeRTOS -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\portable\RVDS\ARM_CM3 -I..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include -I..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL --gnu-I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\CMSIS\Include-I C:\Keil_v5\ARM\Inc\ST\STM32F4xx-DUSE_STDPERIPH_DRIVER -DSTM32F40XX -DUSE_STM324x7I_EVAL -o .\stm324xg_eval\stm324x7i_eval.o --omf_browse .\stm324xg_eval\stm324x7i_eval.crf --depend .\stm324xg_eval\stm324x7i_eval.d)
 I (..\..\..\..\Utilities\STM32_EVAL\STM324x7I_EVAL\STM324x7i_eval.h)(0x54C72F3F)
 I (..\..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x545E8FBC)
 I (..\..\..\..\Libraries\CMSIS\Include\core_cm4.h)(0x51F8A556)
@@ -2422,7 +2422,7 @@ I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/err.h)(0x51F8A5
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\ipv4\lwip/ip_addr.h)(0x51F8A54C)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/def.h)(0x51F8A54E)
 I (..\..\..\..\Utilities\Third_Party\lwip-1.4.1\src\include\lwip/pbuf.h)(0x51F8A54E)
-I (..\inc\UVTKdrv.h)(0x54C77847)
+I (..\inc\UVTKdrv.h)(0x54D093B6)
 I (..\..\..\..\Utilities\Third_Party\FreeRTOSV7.3.0\include\timers.h)(0x548FEC38)
 I (..\inc\libiecasdu.h)(0x54C75E15)
 I (..\inc\IEC104_server.h)(0x54C73383)

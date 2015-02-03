@@ -22,10 +22,8 @@ UVTKState UVTK_timer[NUM_TIMERS] = {{NULL, 0x00, 0x00, 0x0C, 0x01}, {NULL, 0x00,
 uint8_t UVTK_inrogenTS 	[UVTK_INROGEN_MSG_SIZE] = {0x02, 0xFF, 0x24, 0x0C, 0x00};
 uint8_t UVTK_inrogenTI1 [UVTK_INROGEN_MSG_SIZE] = {0x02, 0xFF, 0x24, 0x05, 0x00};
 uint8_t UVTK_inrogenTI2 [UVTK_INROGEN_MSG_SIZE] = {0x02, 0xFF, 0x24, 0x15, 0x00};
-//const uint8_t* const UVTK_inrogenData[UVTK_INROGEN_QUEUE_SIZE] = {UVTK_inrogenTI1, UVTK_inrogenTI2, UVTK_inrogenTS, UVTK_inrogenTI1, UVTK_inrogenTI2};
 uint8_t** UVTK_inrogenData = NULL;
 uint8_t* UVTK_ts_grp_data = NULL;
-//uint8_t UVTK_ts_grp_data[UVTK_TS_GR_SIZE*UVTK_TS_GR_NUM];
 uint16_t* UVTK_ti_grp_data = NULL;
 
 
@@ -42,7 +40,7 @@ void UVTK_init_task(){
 	
 	form_UVTK_inrogen_data_mas();
 	form_UVTK_ts_data_mas();
-	form_UVTK_ts_data_mas();
+	form_UVTK_ti_data_mas();
 	
 	if(xSPI_UVTK_Mutex != NULL && xSPI_UVTK_Semaphore != NULL){
 		UVTK_set_inv(UVTK_INV_CODE);
@@ -64,9 +62,12 @@ void UVTK_init_task(){
 
 /**
   * @brief  UVTK Poll Task
+	* Uses SPI3 to receive UVTK message from UVTK_module,
+	* than puts TS and TI data accordingly to TS and TI arrays.
+	* Moreover stops and zeroes IV timers if any valuable data received.
   * @param  pvParameters not used
   * @retval None
-	* @TODO 	If we have message 0xFF 0x7E than we have not fixed bug,
+	* @TODO 	If we receive message ... 0xFF 0x7E, than we have not fixed bug,
   */
 void UVTK_poll(void * pvParameters)
 {
@@ -250,7 +251,8 @@ void form_UVTK_ts_data_mas(void){
 }
 
 void form_UVTK_ti_data_mas(void){
-		uint8_t len = UVTK_TI_GR_NUM * UVTK_TI_GR_SIZE;
-		UVTK_ti_grp_data = (uint16_t*)pvPortMalloc(len); 
+		uint8_t len = 2*UVTK_TI_GR_NUM * UVTK_TI_GR_SIZE;
+		UVTK_ti_grp_data = (uint16_t*)pvPortMalloc(len);
+		
 }
 

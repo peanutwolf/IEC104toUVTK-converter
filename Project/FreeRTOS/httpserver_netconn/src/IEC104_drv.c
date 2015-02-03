@@ -18,29 +18,23 @@
 
 extern uint8_t* UVTK_ts_grp_data;
 extern uint16_t* UVTK_ti_grp_data;
-
-
 extern fifo_t* iec_fifo_buf;
-
 extern UVTKState UVTK_timer[NUM_TIMERS];
 
 struct iec_type1_data*  ts_mas = NULL;
-//struct iec_type1_data  ts_mas[IEC104_TS_SIZE] = {[0 ... IEC104_TS_SIZE-1] = {{0,0,0,0,0,1},0}};
 struct iec_type9_data* ti_mas = NULL;
-//struct iec_type9_data  ti_mas[IEC104_TI_SIZE] = {[0 ... IEC104_TI_SIZE-1] = {{0,0,0,0,0,0,1},0}};
 
 xSemaphoreHandle xIEC104_Poll_Mutex = NULL;
 
 
 void IEC104_init_task(){
-	//ti_mas = (struct iec_type9_data*)pvPortMalloc(sizeof(struct iec_type9_data) * IEC104_TI_SIZE);
 	form_IEC_ts_data_mas();
 	form_IEC_ti_data_mas();
 	xIEC104_Poll_Mutex = xSemaphoreCreateMutex();
 	xTaskCreate(IEC104_UVTK_TS_poll, (int8_t *) "IEC104_UVTK_TS_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
 	xTaskCreate(IEC104_TS_poll, (int8_t *) "IEC104_TS_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
-	//xTaskCreate(IEC104_UVTK_TI_poll, (int8_t *) "IEC104_UVTK_TI_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
-	//xTaskCreate(IEC104_TI_poll, (int8_t *) "IEC104_TI_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
+	xTaskCreate(IEC104_UVTK_TI_poll, (int8_t *) "IEC104_UVTK_TI_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
+	xTaskCreate(IEC104_TI_poll, (int8_t *) "IEC104_TI_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL);
 	xTaskCreate(IEC104_UVTK_IV_poll, (int8_t *) "IEC104_UVTK_IV_poll", configMINIMAL_STACK_SIZE, NULL, IEC104_TASK_PRIO, NULL); 
 }
 

@@ -49,7 +49,6 @@ void parse_iframe(fifo_t* fifo_buf, struct iec_buf* buf){
 								fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_SP_NA_1, i, 0x20));	
 							}
 							for(i = 0; i < IEC104_TI_SIZE; i+=0x10){
-								printf("IEC104_TI_SIZE%d \n", IEC104_TI_SIZE);
 								fifoPushElem(fifo_buf, prepare_data_iframe(INROGEN_COT, M_ME_NA_1, i, 0x10));
 							}
 							xTimerReset(INROGEN_timer, 0);
