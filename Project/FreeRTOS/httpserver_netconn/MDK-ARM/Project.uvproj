@@ -333,8 +333,8 @@
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
-                <StartAddress>0x10000000</StartAddress>
-                <Size>0x10000</Size>
+                <StartAddress>0x0</StartAddress>
+                <Size>0x0</Size>
               </OCR_RVCT10>
             </OnChipMemories>
             <RvctStartVector></RvctStartVector>
@@ -385,7 +385,7 @@
             <useFile>0</useFile>
             <TextAddressRange>0x08000000</TextAddressRange>
             <DataAddressRange>0x20000000</DataAddressRange>
-            <ScatterFile></ScatterFile>
+            <ScatterFile>.\STM324xG_EVAL\STM324xG_EVAL.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc></Misc>
@@ -518,6 +518,11 @@
               <FileName>httpserver-netconn.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\httpserver-netconn.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_data.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\http_data.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1365,6 +1370,11 @@
               <FileName>httpserver-netconn.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\httpserver-netconn.c</FilePath>
+            </File>
+            <File>
+              <FileName>http_data.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\http_data.c</FilePath>
             </File>
           </Files>
         </Group>

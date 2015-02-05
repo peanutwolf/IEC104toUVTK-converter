@@ -35,7 +35,6 @@
 /* Private variables ---------------------------------------------------------*/
 extern fifo_t* iec_fifo_buf;
 xSemaphoreHandle xButtonSemaphore;
-
 /* Private function prototypes -----------------------------------------------*/
 void LCD_LED_Init(void);
 void ToggleLed4(void * pvParameters);

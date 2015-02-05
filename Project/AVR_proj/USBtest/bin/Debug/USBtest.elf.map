@@ -1,0 +1,739 @@
+Archive member included because of file (symbol)
+
+/usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_exit.o)
+                              /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o (exit)
+/usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_copy_data.o)
+                              obj/Debug/CRC16/lib_crc.o (__do_copy_data)
+/usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_clear_bss.o)
+                              obj/Debug/CRC16/lib_crc.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+output_flags_p      0x2               obj/Debug/main.o
+out_struct_bill_p   0x2               obj/Debug/main.o
+usbTxBuf            0xb               obj/Debug/usbdrv/usbdrv.o
+usbTxStatus1        0xc               obj/Debug/usbdrv/usbdrv.o
+input               0x1               obj/Debug/main.o
+counter1            0x1               obj/Debug/main.o
+crc_kermit_p        0x2               obj/Debug/main.o
+data_byte_counter_p
+                    0x2               obj/Debug/main.o
+usbDeviceAddr       0x1               obj/Debug/usbdrv/usbdrv.o
+usbRxToken          0x1               obj/Debug/usbdrv/usbdrv.o
+data_p              0x2               obj/Debug/main.o
+usbInputBufOffset   0x1               obj/Debug/usbdrv/usbdrv.o
+bill_is_set_p       0x2               obj/Debug/main.o
+out_struct_opros_p  0x2               obj/Debug/main.o
+input_p             0x2               obj/Debug/main.o
+data                0x1               obj/Debug/main.o
+flags_p             0x2               obj/Debug/main.o
+usbMsgPtr           0x2               obj/Debug/usbdrv/usbdrv.o
+out_struct_KZP_p    0x2               obj/Debug/main.o
+usbRxLen            0x1               obj/Debug/usbdrv/usbdrv.o
+usbNewDeviceAddr    0x1               obj/Debug/usbdrv/usbdrv.o
+usbCurrentTok       0x1               obj/Debug/usbdrv/usbdrv.o
+USB_msg_data_p      0x2               obj/Debug/main.o
+inv_p               0x2               obj/Debug/main.o
+MyUSBbuf            0x2               obj/Debug/main.o
+usbConfiguration    0x1               obj/Debug/usbdrv/usbdrv.o
+out_struct_p        0x2               obj/Debug/main.o
+high_bit_counter_p  0x2               obj/Debug/main.o
+usbRxBuf            0x16              obj/Debug/usbdrv/usbdrv.o
+usbTxStatus3        0xc               obj/Debug/usbdrv/usbdrv.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00002000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+LOAD obj/Debug/CRC16/lib_crc.o
+LOAD obj/Debug/STM32drv.o
+LOAD obj/Debug/USBbuf.o
+LOAD obj/Debug/avr_fifo.o
+LOAD obj/Debug/main.o
+LOAD obj/Debug/usbdrv/oddebug.o
+LOAD obj/Debug/usbdrv/usbdrv.o
+LOAD obj/Debug/usbdrv/usbdrvasm.o
+LOAD /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a
+LOAD /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/libm.a
+LOAD /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a
+LOAD /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/libc.a
+LOAD /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x12e4
+ *(.vectors)
+ .vectors       0x00000000       0x26 /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+ .progmem.data  0x00000026       0x5e obj/Debug/usbdrv/usbdrv.o
+                0x00000026                usbDescriptorString0
+                0x0000002a                usbDescriptorStringVendor
+                0x0000003c                usbDescriptorStringDevice
+                0x00000052                usbDescriptorDevice
+                0x00000064                usbDescriptorConfiguration
+                0x00000084                . = ALIGN (0x2)
+                0x00000084                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000084        0x0 linker stubs
+ *(.trampolines*)
+                0x00000084                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000084                __ctors_start = .
+ *(.ctors)
+                0x00000084                __ctors_end = .
+                0x00000084                __dtors_start = .
+ *(.dtors)
+                0x00000084                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000084        0x0 /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+                0x00000084                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000084        0xc /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000090       0x16 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_copy_data.o)
+                0x00000090                __do_copy_data
+ .init4         0x000000a6       0x10 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_clear_bss.o)
+                0x000000a6                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x000000b6        0x4 /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+ *(.init9)
+ *(.text)
+ .text          0x000000ba        0x2 /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+                0x000000ba                __vector_12
+                0x000000ba                __bad_interrupt
+                0x000000ba                __vector_3
+                0x000000ba                __vector_11
+                0x000000ba                __vector_13
+                0x000000ba                __vector_17
+                0x000000ba                __vector_7
+                0x000000ba                __vector_5
+                0x000000ba                __vector_4
+                0x000000ba                __vector_9
+                0x000000ba                __vector_2
+                0x000000ba                __vector_15
+                0x000000ba                __vector_8
+                0x000000ba                __vector_14
+                0x000000ba                __vector_16
+                0x000000ba                __vector_18
+ .text          0x000000bc       0xae obj/Debug/CRC16/lib_crc.o
+                0x000000bc                update_crc_kermit
+ .text          0x0000016a      0x1bc obj/Debug/STM32drv.o
+                0x0000016a                getServData
+                0x000001fe                getUVTKData
+                0x00000262                sendUVTKData
+ .text          0x00000326       0x5c obj/Debug/USBbuf.o
+                0x00000326                MyUSBbufferInit
+                0x00000338                USBbufferAddToEnd
+                0x00000372                USBbufferSendAll
+                0x0000037a                USBbufferGetSize
+ .text          0x00000382       0xde obj/Debug/avr_fifo.o
+                0x00000382                FifoDataLength
+                0x00000392                FifoFreeDataLength
+                0x000003a6                FifoWrite
+                0x000003e4                FifoRead
+                0x00000420                FifoPeek
+ .text          0x00000460      0x8f0 obj/Debug/main.o
+                0x00000460                __vector_6
+                0x00000536                polish_input_bit
+                0x00000688                set_output_bit
+                0x000007c6                set_output_request
+                0x000007fe                set_bill_answ
+                0x0000084e                reverse_byte
+                0x00000892                spi_slave_init
+                0x000008b8                usbFunctionSetup
+                0x0000090c                usbFunctionWrite
+                0x00000954                main
+                0x00000cfa                __vector_10
+ .text          0x00000d50        0x0 obj/Debug/usbdrv/oddebug.o
+ .text          0x00000d50      0x306 obj/Debug/usbdrv/usbdrv.o
+                0x00000d50                usbInit
+                0x00000d7e                usbPoll
+                0x00001046                usbSetInterrupt3
+                0x0000104e                usbSetInterrupt
+ .text          0x00001056      0x28a obj/Debug/usbdrv/usbdrvasm.o
+                0x00001056                usbCrc16
+                0x00001080                usbCrc16Append
+                0x00001088                __vector_1
+ .text          0x000012e0        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_exit.o)
+ .text          0x000012e0        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_copy_data.o)
+ .text          0x000012e0        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_clear_bss.o)
+                0x000012e0                . = ALIGN (0x2)
+ *(.text.*)
+ .text.libgcc   0x000012e0        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_exit.o)
+ .text.libgcc   0x000012e0        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_copy_data.o)
+ .text.libgcc   0x000012e0        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_clear_bss.o)
+                0x000012e0                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x000012e0        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_exit.o)
+                0x000012e0                exit
+                0x000012e0                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x000012e0        0x4 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_exit.o)
+ *(.fini0)
+                0x000012e4                _etext = .
+
+.data           0x00800060       0xa2 load address 0x000012e4
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+ .data          0x00800060        0x0 obj/Debug/CRC16/lib_crc.o
+ .data          0x00800060       0x5a obj/Debug/STM32drv.o
+                0x00800060                _raw_spi_fifo
+                0x008000a3                spi_fifo
+                0x008000a5                _raw_spi_msg_size_fifo
+                0x008000b8                spi_msg_size_fifo
+ .data          0x008000ba        0x0 obj/Debug/USBbuf.o
+ .data          0x008000ba        0x0 obj/Debug/avr_fifo.o
+ .data          0x008000ba       0x45 obj/Debug/main.o
+                0x008000ba                transmit_arr_KZP
+                0x008000c6                transmit_arr_bill
+                0x008000dd                transmit_arr
+ .data          0x008000ff        0x0 obj/Debug/usbdrv/oddebug.o
+ .data          0x008000ff        0x2 obj/Debug/usbdrv/usbdrv.o
+                0x008000ff                usbTxLen
+ .data          0x00800101        0x0 obj/Debug/usbdrv/usbdrvasm.o
+ .data          0x00800101        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_exit.o)
+ .data          0x00800101        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_copy_data.o)
+ .data          0x00800101        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_clear_bss.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800102                . = ALIGN (0x2)
+ *fill*         0x00800101        0x1 00
+                0x00800102                _edata = .
+                0x00800102                PROVIDE (__data_end, .)
+
+.bss            0x00800102      0x271
+                0x00800102                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800102        0x0 /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+ .bss           0x00800102      0x202 obj/Debug/CRC16/lib_crc.o
+ .bss           0x00800304        0x7 obj/Debug/STM32drv.o
+ .bss           0x0080030b        0x0 obj/Debug/USBbuf.o
+ .bss           0x0080030b        0x0 obj/Debug/avr_fifo.o
+ .bss           0x0080030b        0x4 obj/Debug/main.o
+ .bss           0x0080030f        0x0 obj/Debug/usbdrv/oddebug.o
+ .bss           0x0080030f        0x1 obj/Debug/usbdrv/usbdrv.o
+ .bss           0x00800310        0x0 obj/Debug/usbdrv/usbdrvasm.o
+ .bss           0x00800310        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_exit.o)
+ .bss           0x00800310        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_copy_data.o)
+ .bss           0x00800310        0x0 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_clear_bss.o)
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x00800310       0x21 obj/Debug/main.o
+                0x00800310                output_flags_p
+                0x00800312                out_struct_bill_p
+                0x00800314                input
+                0x00800315                counter1
+                0x00800316                crc_kermit_p
+                0x00800318                data_byte_counter_p
+                0x0080031a                data_p
+                0x0080031c                bill_is_set_p
+                0x0080031e                out_struct_opros_p
+                0x00800320                input_p
+                0x00800322                data
+                0x00800323                flags_p
+                0x00800325                out_struct_KZP_p
+                0x00800327                USB_msg_data_p
+                0x00800329                inv_p
+                0x0080032b                MyUSBbuf
+                0x0080032d                out_struct_p
+                0x0080032f                high_bit_counter_p
+ COMMON         0x00800331       0x42 obj/Debug/usbdrv/usbdrv.o
+                0x00800331                usbTxBuf
+                0x0080033c                usbTxStatus1
+                0x00800348                usbDeviceAddr
+                0x00800349                usbRxToken
+                0x0080034a                usbInputBufOffset
+                0x0080034b                usbMsgPtr
+                0x0080034d                usbRxLen
+                0x0080034e                usbNewDeviceAddr
+                0x0080034f                usbCurrentTok
+                0x00800350                usbConfiguration
+                0x00800351                usbRxBuf
+                0x00800367                usbTxStatus3
+                0x00800373                PROVIDE (__bss_end, .)
+                0x000012e4                __data_load_start = LOADADDR (.data)
+                0x00001386                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800373        0x0
+                0x00800373                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800373                PROVIDE (__noinit_end, .)
+                0x00800373                _end = .
+                0x00800373                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab           0x00000000      0x6b4
+ *(.stab)
+ .stab          0x00000000      0x6b4 /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+
+.stabstr        0x00000000       0x54
+ *(.stabstr)
+ .stabstr       0x00000000       0x54 /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0xc0
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 obj/Debug/CRC16/lib_crc.o
+ .debug_aranges
+                0x00000020       0x20 obj/Debug/STM32drv.o
+ .debug_aranges
+                0x00000040       0x20 obj/Debug/USBbuf.o
+ .debug_aranges
+                0x00000060       0x20 obj/Debug/avr_fifo.o
+ .debug_aranges
+                0x00000080       0x20 obj/Debug/main.o
+ .debug_aranges
+                0x000000a0       0x20 obj/Debug/usbdrv/usbdrv.o
+
+.debug_pubnames
+                0x00000000      0x575
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x28 obj/Debug/CRC16/lib_crc.o
+ .debug_pubnames
+                0x00000028       0x93 obj/Debug/STM32drv.o
+ .debug_pubnames
+                0x000000bb       0x66 obj/Debug/USBbuf.o
+ .debug_pubnames
+                0x00000121       0x64 obj/Debug/avr_fifo.o
+ .debug_pubnames
+                0x00000185      0x23a obj/Debug/main.o
+ .debug_pubnames
+                0x000003bf      0x1b6 obj/Debug/usbdrv/usbdrv.o
+
+.debug_info     0x00000000     0x18f4
+ *(.debug_info)
+ .debug_info    0x00000000      0x133 obj/Debug/CRC16/lib_crc.o
+ .debug_info    0x00000133      0x2d8 obj/Debug/STM32drv.o
+ .debug_info    0x0000040b      0x1b8 obj/Debug/USBbuf.o
+ .debug_info    0x000005c3      0x1d5 obj/Debug/avr_fifo.o
+ .debug_info    0x00000798      0x82a obj/Debug/main.o
+ .debug_info    0x00000fc2       0x68 obj/Debug/usbdrv/oddebug.o
+ .debug_info    0x0000102a      0x8ca obj/Debug/usbdrv/usbdrv.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x8b4
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000       0xcf obj/Debug/CRC16/lib_crc.o
+ .debug_abbrev  0x000000cf      0x118 obj/Debug/STM32drv.o
+ .debug_abbrev  0x000001e7       0xe3 obj/Debug/USBbuf.o
+ .debug_abbrev  0x000002ca       0xb8 obj/Debug/avr_fifo.o
+ .debug_abbrev  0x00000382      0x26c obj/Debug/main.o
+ .debug_abbrev  0x000005ee       0x35 obj/Debug/usbdrv/oddebug.o
+ .debug_abbrev  0x00000623      0x291 obj/Debug/usbdrv/usbdrv.o
+
+.debug_line     0x00000000     0x1a57
+ *(.debug_line)
+ .debug_line    0x00000000       0xcf obj/Debug/CRC16/lib_crc.o
+ .debug_line    0x000000cf      0x2bf obj/Debug/STM32drv.o
+ .debug_line    0x0000038e      0x26a obj/Debug/USBbuf.o
+ .debug_line    0x000005f8      0x1bd obj/Debug/avr_fifo.o
+ .debug_line    0x000007b5      0xaae obj/Debug/main.o
+ .debug_line    0x00001263      0x208 obj/Debug/usbdrv/oddebug.o
+ .debug_line    0x0000146b      0x5ec obj/Debug/usbdrv/usbdrv.o
+
+.debug_frame    0x00000000      0x230
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x20 obj/Debug/CRC16/lib_crc.o
+ .debug_frame   0x00000020       0x40 obj/Debug/STM32drv.o
+ .debug_frame   0x00000060       0x50 obj/Debug/USBbuf.o
+ .debug_frame   0x000000b0       0x60 obj/Debug/avr_fifo.o
+ .debug_frame   0x00000110       0xc0 obj/Debug/main.o
+ .debug_frame   0x000001d0       0x60 obj/Debug/usbdrv/usbdrv.o
+
+.debug_str      0x00000000      0x903
+ *(.debug_str)
+ .debug_str     0x00000000       0xa0 obj/Debug/CRC16/lib_crc.o
+                                 0xa5 (size before relaxing)
+ .debug_str     0x000000a0      0x15f obj/Debug/STM32drv.o
+                                0x1df (size before relaxing)
+ .debug_str     0x000001ff       0x96 obj/Debug/USBbuf.o
+                                0x147 (size before relaxing)
+ .debug_str     0x00000295       0x49 obj/Debug/avr_fifo.o
+                                0x10a (size before relaxing)
+ .debug_str     0x000002de      0x36f obj/Debug/main.o
+                                0x4eb (size before relaxing)
+ .debug_str     0x0000064d       0x11 obj/Debug/usbdrv/oddebug.o
+                                 0xa9 (size before relaxing)
+ .debug_str     0x0000065e      0x2a5 obj/Debug/usbdrv/usbdrv.o
+                                0x3f8 (size before relaxing)
+
+.debug_loc      0x00000000      0xbdd
+ *(.debug_loc)
+ .debug_loc     0x00000000       0x91 obj/Debug/CRC16/lib_crc.o
+ .debug_loc     0x00000091       0x95 obj/Debug/STM32drv.o
+ .debug_loc     0x00000126       0xb3 obj/Debug/USBbuf.o
+ .debug_loc     0x000001d9      0x136 obj/Debug/avr_fifo.o
+ .debug_loc     0x0000030f      0x2b5 obj/Debug/main.o
+ .debug_loc     0x000005c4      0x619 obj/Debug/usbdrv/usbdrv.o
+
+.debug_macinfo  0x00000000    0x20a8d
+ *(.debug_macinfo)
+ .debug_macinfo
+                0x00000000      0xb90 obj/Debug/CRC16/lib_crc.o
+ .debug_macinfo
+                0x00000b90     0x2486 obj/Debug/STM32drv.o
+ .debug_macinfo
+                0x00003016     0x578c obj/Debug/USBbuf.o
+ .debug_macinfo
+                0x000087a2     0x23cc obj/Debug/avr_fifo.o
+ .debug_macinfo
+                0x0000ab6e     0x800c obj/Debug/main.o
+ .debug_macinfo
+                0x00012b7a     0x647a obj/Debug/usbdrv/oddebug.o
+ .debug_macinfo
+                0x00018ff4     0x7a99 obj/Debug/usbdrv/usbdrv.o
+OUTPUT(bin/Debug/USBtest.elf elf32-avr)
+LOAD linker stubs
+
+.debug_ranges   0x00000000      0x100
+ .debug_ranges  0x00000000       0x30 obj/Debug/CRC16/lib_crc.o
+ .debug_ranges  0x00000030       0x60 obj/Debug/main.o
+ .debug_ranges  0x00000090       0x70 obj/Debug/usbdrv/usbdrv.o
+
+Cross Reference Table
+
+Symbol                                            File
+FifoDataLength                                    obj/Debug/avr_fifo.o
+FifoFreeDataLength                                obj/Debug/avr_fifo.o
+                                                  obj/Debug/STM32drv.o
+FifoPeek                                          obj/Debug/avr_fifo.o
+                                                  obj/Debug/STM32drv.o
+FifoRead                                          obj/Debug/avr_fifo.o
+                                                  obj/Debug/STM32drv.o
+FifoWrite                                         obj/Debug/avr_fifo.o
+                                                  obj/Debug/STM32drv.o
+MyUSBbuf                                          obj/Debug/main.o
+MyUSBbufferInit                                   obj/Debug/USBbuf.o
+                                                  obj/Debug/main.o
+USB_msg_data_p                                    obj/Debug/main.o
+                                                  obj/Debug/STM32drv.o
+USBbufferAddToEnd                                 obj/Debug/USBbuf.o
+                                                  obj/Debug/main.o
+USBbufferGetSize                                  obj/Debug/USBbuf.o
+                                                  obj/Debug/main.o
+USBbufferSendAll                                  obj/Debug/USBbuf.o
+                                                  obj/Debug/main.o
+__bad_interrupt                                   /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__bss_end                                         /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_clear_bss.o)
+__bss_start                                       /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_clear_bss.o)
+__data_end                                        /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_copy_data.o)
+__data_load_start                                 /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_copy_data.o)
+__data_start                                      /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_copy_data.o)
+__do_clear_bss                                    /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_clear_bss.o)
+                                                  obj/Debug/usbdrv/usbdrv.o
+                                                  obj/Debug/usbdrv/oddebug.o
+                                                  obj/Debug/main.o
+                                                  obj/Debug/avr_fifo.o
+                                                  obj/Debug/USBbuf.o
+                                                  obj/Debug/STM32drv.o
+                                                  obj/Debug/CRC16/lib_crc.o
+__do_copy_data                                    /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_copy_data.o)
+                                                  obj/Debug/usbdrv/usbdrv.o
+                                                  obj/Debug/usbdrv/oddebug.o
+                                                  obj/Debug/main.o
+                                                  obj/Debug/avr_fifo.o
+                                                  obj/Debug/USBbuf.o
+                                                  obj/Debug/STM32drv.o
+                                                  obj/Debug/CRC16/lib_crc.o
+__heap_end                                        /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__init                                            /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__stack                                           /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_1                                        obj/Debug/usbdrv/usbdrvasm.o
+                                                  /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_10                                       obj/Debug/main.o
+                                                  /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_11                                       /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_12                                       /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_13                                       /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_14                                       /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_15                                       /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_16                                       /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_17                                       /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_18                                       /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_2                                        /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_3                                        /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_4                                        /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_5                                        /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_6                                        obj/Debug/main.o
+                                                  /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_7                                        /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_8                                        /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_9                                        /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vector_default                                  /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+__vectors                                         /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+_exit                                             /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_exit.o)
+_raw_spi_fifo                                     obj/Debug/STM32drv.o
+_raw_spi_msg_size_fifo                            obj/Debug/STM32drv.o
+bill_is_set_p                                     obj/Debug/main.o
+counter1                                          obj/Debug/main.o
+crc_kermit_p                                      obj/Debug/main.o
+data                                              obj/Debug/main.o
+data_byte_counter_p                               obj/Debug/main.o
+data_p                                            obj/Debug/main.o
+exit                                              /usr/lib/gcc/avr/4.3.4/avr4/libgcc.a(_exit.o)
+                                                  /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+flags_p                                           obj/Debug/main.o
+getServData                                       obj/Debug/STM32drv.o
+                                                  obj/Debug/main.o
+getUVTKData                                       obj/Debug/STM32drv.o
+                                                  obj/Debug/main.o
+high_bit_counter_p                                obj/Debug/main.o
+input                                             obj/Debug/main.o
+input_p                                           obj/Debug/main.o
+inv_p                                             obj/Debug/main.o
+                                                  obj/Debug/STM32drv.o
+main                                              obj/Debug/main.o
+                                                  /usr/lib/gcc/avr/4.3.4/../../../avr/lib/avr4/crtm8.o
+out_struct_KZP_p                                  obj/Debug/main.o
+out_struct_bill_p                                 obj/Debug/main.o
+out_struct_opros_p                                obj/Debug/main.o
+out_struct_p                                      obj/Debug/main.o
+output_flags_p                                    obj/Debug/main.o
+polish_input_bit                                  obj/Debug/main.o
+reverse_byte                                      obj/Debug/main.o
+sendUVTKData                                      obj/Debug/STM32drv.o
+                                                  obj/Debug/main.o
+set_bill_answ                                     obj/Debug/main.o
+set_output_bit                                    obj/Debug/main.o
+set_output_request                                obj/Debug/main.o
+spi_fifo                                          obj/Debug/STM32drv.o
+spi_msg_size_fifo                                 obj/Debug/STM32drv.o
+spi_slave_init                                    obj/Debug/main.o
+transmit_arr                                      obj/Debug/main.o
+                                                  obj/Debug/STM32drv.o
+transmit_arr_KZP                                  obj/Debug/main.o
+transmit_arr_bill                                 obj/Debug/main.o
+                                                  obj/Debug/STM32drv.o
+update_crc_kermit                                 obj/Debug/CRC16/lib_crc.o
+                                                  obj/Debug/main.o
+usbConfiguration                                  obj/Debug/usbdrv/usbdrv.o
+usbCrc16                                          obj/Debug/usbdrv/usbdrvasm.o
+usbCrc16Append                                    obj/Debug/usbdrv/usbdrvasm.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+usbCurrentTok                                     obj/Debug/usbdrv/usbdrvasm.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+usbDescriptorConfiguration                        obj/Debug/usbdrv/usbdrv.o
+usbDescriptorDevice                               obj/Debug/usbdrv/usbdrv.o
+usbDescriptorString0                              obj/Debug/usbdrv/usbdrv.o
+usbDescriptorStringDevice                         obj/Debug/usbdrv/usbdrv.o
+usbDescriptorStringVendor                         obj/Debug/usbdrv/usbdrv.o
+usbDeviceAddr                                     obj/Debug/usbdrv/usbdrvasm.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+usbFunctionSetup                                  obj/Debug/main.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+usbFunctionWrite                                  obj/Debug/main.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+usbInit                                           obj/Debug/usbdrv/usbdrv.o
+                                                  obj/Debug/main.o
+usbInputBufOffset                                 obj/Debug/usbdrv/usbdrvasm.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+usbMsgPtr                                         obj/Debug/usbdrv/usbdrv.o
+                                                  obj/Debug/main.o
+usbNewDeviceAddr                                  obj/Debug/usbdrv/usbdrvasm.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+usbPoll                                           obj/Debug/usbdrv/usbdrv.o
+                                                  obj/Debug/main.o
+usbRxBuf                                          obj/Debug/usbdrv/usbdrvasm.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+usbRxLen                                          obj/Debug/usbdrv/usbdrvasm.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+usbRxToken                                        obj/Debug/usbdrv/usbdrvasm.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+usbSetInterrupt                                   obj/Debug/usbdrv/usbdrv.o
+                                                  obj/Debug/main.o
+usbSetInterrupt3                                  obj/Debug/usbdrv/usbdrv.o
+usbTxBuf                                          obj/Debug/usbdrv/usbdrvasm.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+usbTxLen                                          obj/Debug/usbdrv/usbdrv.o
+                                                  obj/Debug/usbdrv/usbdrvasm.o
+usbTxStatus1                                      obj/Debug/usbdrv/usbdrvasm.o
+                                                  obj/Debug/usbdrv/usbdrv.o
+                                                  obj/Debug/main.o
+usbTxStatus3                                      obj/Debug/usbdrv/usbdrvasm.o
+                                                  obj/Debug/usbdrv/usbdrv.o

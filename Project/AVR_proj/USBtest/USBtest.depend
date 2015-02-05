@@ -1,0 +1,118 @@
+# depslib dependency file v1.0
+1419248559 source:/home/peanutwolf/Documents/USBtest/main.c
+	<avr/io.h>
+	<avr/wdt.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	<avr/pgmspace.h>
+	"usbdrv/usbdrv.h"
+	"oddebug.h"
+	"requests.h"
+	"USBbuf.h"
+	"CRC16/lib_crc.h"
+	"STM32drv.h"
+
+1400739214 /home/peanutwolf/Documents/USBtest/requests.h
+
+1354788992 /home/peanutwolf/Documents/USBtest/usbdrv/usbdrv.h
+	"usbconfig.h"
+	"usbportability.h"
+
+1392015724 /home/peanutwolf/Documents/USBtest/usbconfig.h
+
+1354788992 /home/peanutwolf/Documents/USBtest/usbdrv/usbportability.h
+	<ioavr.h>
+	<inavr.h>
+	<io.h>
+	<delay.h>
+	<avr/io.h>
+	<avr/pgmspace.h>
+
+1354788992 /home/peanutwolf/Documents/USBtest/usbdrv/oddebug.h
+	"usbportability.h"
+
+1354788992 source:/home/peanutwolf/Documents/USBtest/usbdrv/oddebug.c
+	"oddebug.h"
+
+1354788992 source:/home/peanutwolf/Documents/USBtest/usbdrv/usbdrv.c
+	"usbdrv.h"
+	"oddebug.h"
+
+1354788992 source:/home/peanutwolf/Documents/USBtest/usbdrv/usbdrvasm.S
+	"usbportability.h"
+	"usbdrv.h"
+	"usbdrvasm18-crc.inc"
+	"usbdrvasm12.inc"
+	"usbdrvasm128.inc"
+	"usbdrvasm15.inc"
+	"usbdrvasm16.inc"
+	"usbdrvasm165.inc"
+	"usbdrvasm20.inc"
+
+1354788992 /home/peanutwolf/Documents/USBtest/usbdrv/usbdrvasm18-crc.inc
+	"asmcommon.inc"
+	<stdio.h>
+
+1354788992 /home/peanutwolf/Documents/USBtest/usbdrv/asmcommon.inc
+
+1354788992 /home/peanutwolf/Documents/USBtest/usbdrv/usbdrvasm12.inc
+	"asmcommon.inc"
+
+1354788992 /home/peanutwolf/Documents/USBtest/usbdrv/usbdrvasm128.inc
+	"asmcommon.inc"
+
+1354788992 /home/peanutwolf/Documents/USBtest/usbdrv/usbdrvasm15.inc
+	"asmcommon.inc"
+
+1354788992 /home/peanutwolf/Documents/USBtest/usbdrv/usbdrvasm16.inc
+	"asmcommon.inc"
+
+1354788992 /home/peanutwolf/Documents/USBtest/usbdrv/usbdrvasm165.inc
+	"asmcommon.inc"
+
+1354788992 /home/peanutwolf/Documents/USBtest/usbdrv/usbdrvasm20.inc
+	"asmcommon.inc"
+
+1395991082 /home/peanutwolf/Documents/USBtest//usbconfig.h
+
+1153859778 /home/peanutwolf/Documents/USBtest/buffer.h
+
+1392233433 source:/home/peanutwolf/Documents/USBtest/buffer.c
+	"buffer.h"
+	"global.h"
+	"avr/io.h"
+
+1392233484 /home/peanutwolf/Documents/USBtest/global.h
+	"avrlibdefs.h"
+	"avrlibtypes.h"
+
+1130153114 /home/peanutwolf/Documents/USBtest/avrlibdefs.h
+	"port128.h"
+
+1097793278 /home/peanutwolf/Documents/USBtest/avrlibtypes.h
+
+1392665794 source:/home/peanutwolf/Documents/USBtest/USBbuf.c
+	"avrlibdefs.h"
+	"USBbuf.h"
+
+1392374887 /home/peanutwolf/Documents/USBtest/USBbuf.h
+	<avr/io.h>
+
+1395925736 source:/home/peanutwolf/Documents/USBtest/CRC16/lib_crc.c
+	"lib_crc.h"
+
+1395925732 /home/peanutwolf/Documents/USBtest/CRC16/lib_crc.h
+
+1415973502 /home/peanutwolf/Documents/USBtest/STM32drv.h
+	<stdint.h>
+	"avr_fifo.h"
+
+1419248559 source:/home/peanutwolf/Documents/USBtest/STM32drv.c
+	"STM32drv.h"
+
+1415969807 source:/home/peanutwolf/Documents/USBtest/avr_fifo.c
+	<stdint.h>
+	"avr_fifo.h"
+
+1415968935 /home/peanutwolf/Documents/USBtest/avr_fifo.h
+

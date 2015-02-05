@@ -2,28 +2,101 @@
 <html>
 <body>
 
-    Field1: <input type="text" id="field1" value="Hello World!"><br>
+    
+    <form action="javascript:void(0);" onsubmit="myFunction()">
+        IP address:
+        <input type="text" id="ip1" value="192" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required />.
+        <input type="text" id="ip2" value="168" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required />.
+        <input type="text" id="ip3" value="150" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required />.
+        <input type="text" id="ip4" value="21" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required /><br>
+        Mask:
+        <input type="text" id="mask1" value="255" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required />.
+        <input type="text" id="mask2" value="255" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required />.
+        <input type="text" id="mask3" value="255" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required />.
+        <input type="text" id="mask4" value="0" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required /><br>
+        GW:
+        <input type="text" id="gw1" value="192" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required />.
+        <input type="text" id="gw2" value="168" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required />.
+        <input type="text" id="gw3" value="150" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required />.
+        <input type="text" id="gw4" value="1" style="width:25px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required /><br>
+        UVTK KP address:
+        <input type="text" id="uvtk_kp_addr" value="1" style="width:30px;"
+               pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required /><br>
+        Number of TS in group:
+        <select>
+            <option value="4">32</option>
+            <option value="8">64</option>
+        </select><br>
+        Number of TS groups:
+        <select>
+            <option value="0">no TS</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select><br>
+        Number of TI in group:
+        <select disabled>
+            <option value="16">16</option>
+        </select><br>
+        Number of TI groups:
+        <select>
+            <option value="0">no TI</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select><br>
+        <p><input type="submit" value="Отправить" /></p>
+    </form>
 
-    <button onclick="myFunction()">Copy Text</button>
-
-    <p>A function is triggered when the button is clicked. The function copies the text from Field1 into Field2.</p>
-
+    <p id="demo"></p>
     <script>
         function myFunction() {
             var xhr = new XMLHttpRequest();
             var params = 'a=5';
-            document.getElementById("field1").value = document.getElementById("field1").value + 1;
-            xhr.open("POST", 'http://192.168.150.21');
-            xhr.send(params);
+            document.getElementById("ip1").value = document.getElementById("ip1").value;
+           // xhr.open("POST", 'http://192.168.150.21');
+            //xhr.send(params);
             xhr.onreadystatechange = function () {
                 document.getElementById("field1").value = '123';
                 if (xhr.readyState == xhr.DONE) {
                     document.getElementById("field1").value = '321';
                 }
             }
+        }
 
+        function InvalidMsg(textbox) {
+            id = textbox.id;
+            if (textbox.validity.patternMismatch) {
+                if (id.indexOf("ip") == 0 | id.indexOf("mask") == 0 | id.indexOf("gw") == 0) {
+                    textbox.setCustomValidity('Invalid IP address\nEnter number in range [0-255]');
+                }
+                else if (id.indexOf("uvtk_kp_addr") == 0) {
+                    textbox.setCustomValidity('Invalid KP address\nEnter number in range[0-255]');
+                }
+                else {
+                    textbox.setCustomValidity('Custom error');
+                }
+            }
+            else {
+                textbox.setCustomValidity('');
+            }
+ 
+            return true;
         }
     </script>
-
 </body>
 </html>

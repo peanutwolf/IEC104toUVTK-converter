@@ -156,7 +156,6 @@ void UVTK_TS_poll(void * pvParameters)
 	uint8_t grp_num = (UVTK_TS_GR_NUM > 0 ? 1 : 0) + UVTK_TI_GR_NUM;
   for( ;; )
   {
-//		printf("(UVTK_TS_GR_NUM > 0 ? 1 : 0) + UVTK_TI_GR_NUM %d\n", (UVTK_TS_GR_NUM > 0 ? 1 : 0) + UVTK_TI_GR_NUM);
 		for(i = 0; i < grp_num; i++){
 			xSemaphoreTake( xSPI_UVTK_Mutex, portMAX_DELAY );
 			UVTK_set_inv(UVTK_INV_CODE);
@@ -225,10 +224,6 @@ void stopUVTKTimers(){
 void form_UVTK_inrogen_data_mas(void){
 		
 		uint8_t len = (UVTK_TS_GR_NUM > 0 ? 1 : 0) + UVTK_TI_GR_NUM;
-//		printf("len %d \n", len);
-//		printf("UVTK_TS_GR_NUM %d \n", UVTK_TS_GR_NUM);
-//		printf("UVTK_TI_GR_NUM %d \n", UVTK_TI_GR_NUM);
-//		printf("len*sizeof(uint8_t*) %d \n", len*sizeof(uint8_t*));
 		uint8_t i = 0;
 		UVTK_inrogenData = (uint8_t**)pvPortMalloc(len*sizeof(uint8_t*));
 		if(UVTK_TS_GR_NUM > 0){
