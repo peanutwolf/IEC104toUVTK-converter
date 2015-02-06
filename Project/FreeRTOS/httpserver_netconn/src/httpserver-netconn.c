@@ -32,18 +32,26 @@ extern const unsigned char start_page[915];
   * @param conn: pointer on connection structure 
   * @retval None
   */
+		char* buf;
+		  u16_t buflen;
 void http_server_serve(struct netconn *conn) 
 {
   struct netbuf *inbuf;
   err_t recv_err;
-	char* buf;
-  u16_t buflen;
+
+
 
   recv_err = netconn_recv(conn, &inbuf);
 	if (recv_err == ERR_OK){
 		netbuf_data(inbuf, (void**)&buf, &buflen);
+		
 		printf("%s\n", buf);
-		 if ((buflen >=5) && (strncmp(buf, "GET /", 5) == 0)){
+		 if ((buflen >=5) && (strncmp(buf, "POST /", 5) == 0)){
+			 printf("%s\n",strstr(buf, "gw3"));
+				printf("in POST\n");
+				//netconn_write(conn, (const unsigned char*)(start_page), (size_t)get_start_page_size(), NETCONN_NOCOPY);
+		 }
+		 else if ((buflen >=5) && (strncmp(buf, "GET /", 5) == 0)){
 				printf("in GET\n");
 				netconn_write(conn, (const unsigned char*)(start_page), (size_t)get_start_page_size(), NETCONN_NOCOPY);
 		 }

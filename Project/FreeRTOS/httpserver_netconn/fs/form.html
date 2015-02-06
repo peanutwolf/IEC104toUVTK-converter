@@ -3,7 +3,7 @@
 <body>
 
     
-    <form action="javascript:void(0);" onsubmit="myFunction()">
+    <form action="javascript:void(0);" onsubmit="myFunction(this)">
         IP address:
         <input type="text" id="ip1" value="192" style="width:25px;"
                pattern="(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required />.
@@ -64,11 +64,11 @@
                pattern="([0-9]+)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required /> s.<br>
         <fieldset style="width:230px">
             <legend>Inversion</legend>
-            <input type="checkbox" id="input" value="input" />Input<br>
-            <input type="checkbox" id="output" value="output" />Output<br>
+            <input type="checkbox" id="inp_inv" value="input" />Input<br>
+            <input type="checkbox" id="out_inv" value="output" />Output<br>
         </fieldset><br>
         IEC ASDU address:
-        <input type="text" id="iec_asdu_addr" value="21" style="width:50px;"
+        <input type="text" id="iec_asdu_addr" value="21" style="width:50px;" max=30
                pattern="([0-9]+)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required /><br>
         IEC Socket Port:
         <input type="text" id="iec_sock_port" value="2404" style="width:50px;"
@@ -79,21 +79,30 @@
         TI IEC offset:
         <input type="text" id="iec_mv_ioa_offset" value="1001" style="width:50px;"
                pattern="([0-9]+)" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required /><br>
-        <p><input type="submit" value="Отправить" /></p>
+        <p><input type="submit" value="Submit" /></p>
     </form>
 
     <p id="demo"></p>
     <script>
-        function myFunction() {
+        function myFunction(form) {
             var xhr = new XMLHttpRequest();
-            var params = 'a=5';
-            document.getElementById("ip1").value = document.getElementById("ip1").value;
-           // xhr.open("POST", 'http://192.168.150.21');
-            //xhr.send(params);
+            var params = "";
+            for (i = 0; i < form.length; i++) {
+                elem = form[i];
+                if(elem.id != ""){
+                    params += elem.id + "=" + elem.value + "\n";
+                }
+                
+                
+            }
+            console.info(params);
+            
+            xhr.open("POST", 'http://192.168.150.21');
+            xhr.send(params);
             xhr.onreadystatechange = function () {
-                document.getElementById("field1").value = '123';
+                document.getElementById("ip1").value = '123';
                 if (xhr.readyState == xhr.DONE) {
-                    document.getElementById("field1").value = '321';
+                    document.getElementById("ip1").value = '192';
                 }
             }
         }
@@ -124,7 +133,13 @@
                 }
             }
             else {
-                textbox.setCustomValidity('');
+                if ((id.indexOf("iec_asdu_addr") == 0 | id.indexOf("iec_sock_port") == 0 | id.indexOf("iec_sp_ioa_offset") == 0
+                    | id.indexOf("iec_mv_ioa_offset") == 0 | id.indexOf("iec_asdu_addr") == 0) && textbox.value > 65535) {
+                    textbox.setCustomValidity('Error: value is too high');
+                }
+                else {
+                    textbox.setCustomValidity('');
+                }
             }
  
             return true;

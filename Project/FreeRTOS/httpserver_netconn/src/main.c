@@ -57,6 +57,9 @@ int fputc(int ch, FILE *f) {
   * @param  None
   * @retval None
   */
+
+
+	
 int main(void)
 {
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
